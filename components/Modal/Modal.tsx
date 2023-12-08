@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { ReactNode, useLayoutEffect, useRef } from 'react';
-import { useModalContext } from '@/contexts/modal-context';
+import { useModalContext } from '@/contexts';
 import styles from './Modal.module.css';
 
 const Modal = (): ReactNode => {
@@ -51,7 +51,7 @@ const Modal = (): ReactNode => {
       }}
       ref={ref}
     >
-      {state.children}
+      {state.content}
     </dialog>
   );
 };

@@ -2,26 +2,42 @@
 
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 
+/**
+ * TODOs:
+ *  1. Check if onClose should be optional
+ *  2. Add onOpen
+ */
+
 type State = {
-  children: ReactNode;
+  content: ReactNode;
   isOpen: boolean;
+  onClose: () => void;
+};
+
+type Payload = {
+  content: ReactNode;
   onClose: () => void;
 };
 
 type Action =
   | {
       type: 'OPEN';
-      payload: {
-        children: ReactNode;
-        onClose: () => void;
-      };
+      payload: Payload;
     }
-  | {
-      type: 'CLOSE';
-    };
+  | { type: 'CLOSE' };
+
+type Value = {
+  state: State;
+  open: (payload: Payload) => void;
+  close: () => void;
+};
+
+type Props = {
+  children: ReactNode;
+};
 
 const initialState = {
-  children: null,
+  content: null,
   isOpen: false,
   onClose: () => {}
 };
@@ -40,25 +56,15 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
-type Value = {
-  state: State;
-  open: (Component: ReactNode, onClose: () => void) => void;
-  close: () => void;
-};
-
 const ModalContext = createContext<Value | null>(null);
 
-export const ModalContextProvider = ({
-  children
-}: {
-  children: ReactNode;
-}): ReactNode => {
+export const ModalContextProvider = ({ children }: Props): ReactNode => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const open = (Component: ReactNode, onClose: () => void): void => {
+  const open = (payload: Payload): void => {
     dispatch({
       type: 'OPEN',
-      payload: { children: Component, onClose }
+      payload
     });
   };
 
@@ -79,7 +85,7 @@ export const ModalContextProvider = ({
   );
 };
 
-export const useModalContext = () => {
+export const useModalContext = (): Value => {
   const context = useContext(ModalContext);
 
   if (!context) {
