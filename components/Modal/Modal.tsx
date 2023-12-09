@@ -1,36 +1,36 @@
 'use client';
 
 import clsx from 'clsx';
-import { ReactNode, useLayoutEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { useModalContext } from '@/contexts';
 import styles from './Modal.module.css';
 
 const Modal = (): ReactNode => {
   const { state, close } = useModalContext();
 
-  const ref = useRef<HTMLDialogElement>(null);
+  const ref = useRef<HTMLDialogElement>(null!);
 
-  useLayoutEffect(() => {
-    if (state.isOpen && !ref.current?.open) {
-      ref.current?.showModal();
-    } else if (!state.isOpen && ref.current?.open) {
-      close();
-      ref.current?.close();
-    }
-  }, [state.isOpen]);
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     const dialogRef = ref.current;
 
     const handleClose = () => {
+      state.onClose?.();
       close();
-      state.onClose();
     };
 
-    dialogRef?.addEventListener('close', handleClose);
+    dialogRef.addEventListener('close', handleClose);
 
-    return () => dialogRef?.removeEventListener('close', handleClose);
-  }, [state.onClose]);
+    return () => dialogRef.removeEventListener('close', handleClose);
+  }, []);
+
+  useEffect(() => {
+    if (state.isOpen && !ref.current.open) {
+      state.onOpen?.();
+      ref.current.showModal();
+    } else if (!state.isOpen && ref.current.open) {
+      ref.current.close();
+    }
+  }, [state.isOpen]);
 
   const classNames = clsx(styles.modal, 'min-h-fit p-4 rounded-2xl');
 

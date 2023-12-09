@@ -2,21 +2,17 @@
 
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 
-/**
- * TODOs:
- *  1. Check if onClose should be optional
- *  2. Add onOpen
- */
-
 type State = {
-  content: ReactNode;
   isOpen: boolean;
-  onClose: () => void;
+  content: ReactNode;
+  onOpen?: () => void;
+  onClose?: () => void;
 };
 
 type Payload = {
   content: ReactNode;
-  onClose: () => void;
+  onOpen?: () => void;
+  onClose?: () => void;
 };
 
 type Action =
@@ -37,8 +33,9 @@ type Props = {
 };
 
 const initialState = {
-  content: null,
   isOpen: false,
+  content: null,
+  onOpen: () => {},
   onClose: () => {}
 };
 
