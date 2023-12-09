@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import React from 'react';
+import { ReactNode } from 'react';
 import './globals.css';
+import { Modal } from '@/components';
+import { ModalContextProvider } from '@/contexts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -11,13 +13,18 @@ export const metadata: Metadata = {
 const inter = Inter({ subsets: ['latin'] });
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props): React.ReactNode => {
+const RootLayout = ({ children }: Props): ReactNode => {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ModalContextProvider>
+          {children}
+          <Modal />
+        </ModalContextProvider>
+      </body>
     </html>
   );
 };
