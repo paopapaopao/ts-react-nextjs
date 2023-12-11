@@ -43,6 +43,7 @@ const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'OPEN':
       return {
+        ...state,
         isOpen: true,
         ...action.payload
       };
