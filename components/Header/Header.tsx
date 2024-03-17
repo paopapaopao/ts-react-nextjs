@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
-import styles from './Header.module.css';
 
 type Props = {
   children: ReactNode;
@@ -20,7 +19,8 @@ const Left = ({ children, className = '' }: Props): ReactNode => {
 };
 
 const Center = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx('center', styles.center, className);
+  const styleClassNames = 'flex-1 flex justify-center';
+  const classNames = clsx('center', styleClassNames, className);
 
   return <div className={classNames}>{children}</div>;
 };
@@ -35,7 +35,8 @@ const Header: HeaderComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const classNames = clsx('header', styles.header, className);
+  const styleClassNames = 'flex';
+  const classNames = clsx('header', styleClassNames, className);
 
   return <header className={classNames}>{children}</header>;
 };
