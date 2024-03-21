@@ -1,7 +1,11 @@
-.not-found-page {
+.loading-page {
   min-height: calc(100dvh - 57px);
 }
 
 .error-page {
+  min-height: calc(100dvh - 57px);
+}
+
+.not-found-page {
   min-height: calc(100dvh - 57px);
 }
