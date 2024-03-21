@@ -35,7 +35,7 @@ const Header: HeaderComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const styleClassNames = 'flex';
+  const styleClassNames = 'sticky top-0 flex bg-white border-b';
   const classNames = clsx('header', styleClassNames, className);
 
   return <header className={classNames}>{children}</header>;

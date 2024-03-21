@@ -56,7 +56,7 @@ const reducer = (state: State, action: Action): State => {
 
 const ModalContext = createContext<Value | null>(null);
 
-export const ModalContextProvider = ({ children }: Props): ReactNode => {
+const ModalContextProvider = ({ children }: Props): ReactNode => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const open = (payload: Payload): void => {
@@ -83,7 +83,7 @@ export const ModalContextProvider = ({ children }: Props): ReactNode => {
   );
 };
 
-export const useModalContext = (): Value => {
+const useModalContext = (): Value => {
   const context = useContext(ModalContext);
 
   if (!context) {
@@ -92,3 +92,5 @@ export const useModalContext = (): Value => {
 
   return context;
 };
+
+export { ModalContextProvider, useModalContext };
