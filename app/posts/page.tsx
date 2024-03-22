@@ -1,7 +1,8 @@
 'use client';
 
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './Posts.module.css';
 
@@ -15,9 +16,15 @@ type Post = {
 /**
  * TODOs:
  *  - Move card component to its own file
+ *  - Wrap filteredPosts in Suspense
+ *  - Add debounce
  */
 
 const Posts = (): ReactNode => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -42,18 +49,48 @@ const Posts = (): ReactNode => {
     fetchPosts();
   }, []);
 
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.includes(searchParams.get('query') || '') ||
+      post.body.includes(searchParams.get('query') || '')
+  );
+
   const styleClassNames = 'py-8 flex flex-col items-center gap-4';
   const classNames = clsx('posts-page', styleClassNames, styles['posts-page']);
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const params = new URLSearchParams(searchParams);
+
+    if (event.target.value) {
+      params.set('query', event.target.value);
+    } else {
+      params.delete('query');
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <main className={classNames}>
-      <h1 className="text-xl">All posts</h1>
-      {posts.map((post) => (
+      <div className="flex gap-4">
+        <label htmlFor="search" className="text-xl">
+          Search posts
+        </label>
+        <input
+          type="text"
+          defaultValue={searchParams.get('query')?.toString()}
+          id="search"
+          className="border"
+          onChange={handleChange}
+        />
+      </div>
+      {filteredPosts.map((post) => (
         <div
           className={clsx(
             'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
             styles.card
           )}
+          key={post.id}
         >
           <h4 className="text-lg font-bold text-black">
             {capitalizeFirstLetter(post?.title)}
