@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './Posts.module.css';
 
@@ -16,6 +16,8 @@ type Post = {
 /**
  * TODOs:
  *  - Move card component to its own file
+ *  - Wrap filteredPosts in Suspense
+ *  - Add debounce
  */
 
 const Posts = (): ReactNode => {
@@ -47,14 +49,20 @@ const Posts = (): ReactNode => {
     fetchPosts();
   }, []);
 
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.includes(searchParams.get('query') || '') ||
+      post.body.includes(searchParams.get('query') || '')
+  );
+
   const styleClassNames = 'py-8 flex flex-col items-center gap-4';
   const classNames = clsx('posts-page', styleClassNames, styles['posts-page']);
 
-  const handleSearch = (query: string): void => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const params = new URLSearchParams(searchParams);
 
-    if (query) {
-      params.set('query', query);
+    if (event.target.value) {
+      params.set('query', event.target.value);
     } else {
       params.delete('query');
     }
@@ -70,13 +78,13 @@ const Posts = (): ReactNode => {
         </label>
         <input
           type="text"
-          className="border"
-          id="search"
-          onChange={(event) => handleSearch(event.target.value)}
           defaultValue={searchParams.get('query')?.toString()}
+          id="search"
+          className="border"
+          onChange={handleChange}
         />
       </div>
-      {posts.map((post) => (
+      {filteredPosts.map((post) => (
         <div
           className={clsx(
             'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
