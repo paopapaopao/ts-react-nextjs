@@ -45,15 +45,30 @@ const Posts = (): ReactNode => {
   const styleClassNames = 'py-8 flex flex-col items-center gap-4';
   const classNames = clsx('posts-page', styleClassNames, styles['posts-page']);
 
+  const handleSearch = (query: string) => {
+    console.log('query', query);
+  };
+
   return (
     <main className={classNames}>
-      <h1 className="text-xl">All posts</h1>
+      <div className="flex gap-4">
+        <label htmlFor="search" className="text-xl">
+          Search posts
+        </label>
+        <input
+          type="text"
+          className="border"
+          id="search"
+          onChange={(event) => handleSearch(event.target.value)}
+        />
+      </div>
       {posts.map((post) => (
         <div
           className={clsx(
             'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
             styles.card
           )}
+          key={post.id}
         >
           <h4 className="text-lg font-bold text-black">
             {capitalizeFirstLetter(post?.title)}
