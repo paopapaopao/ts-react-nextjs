@@ -73,6 +73,7 @@ const Posts = (): ReactNode => {
           className="border"
           id="search"
           onChange={(event) => handleSearch(event.target.value)}
+          defaultValue={searchParams.get('query')?.toString()}
         />
       </div>
       {posts.map((post) => (
