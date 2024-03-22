@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './Posts.module.css';
@@ -18,6 +19,10 @@ type Post = {
  */
 
 const Posts = (): ReactNode => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -45,8 +50,16 @@ const Posts = (): ReactNode => {
   const styleClassNames = 'py-8 flex flex-col items-center gap-4';
   const classNames = clsx('posts-page', styleClassNames, styles['posts-page']);
 
-  const handleSearch = (query: string) => {
-    console.log('query', query);
+  const handleSearch = (query: string): void => {
+    const params = new URLSearchParams(searchParams);
+
+    if (query) {
+      params.set('query', query);
+    } else {
+      params.delete('query');
+    }
+
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
