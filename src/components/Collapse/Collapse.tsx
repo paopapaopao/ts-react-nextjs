@@ -1,14 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
-import React, {
-  FC,
-  ReactNode,
-  createContext,
-  useContext,
-  useState
-} from 'react';
-import { Button } from '..';
+import { FC, ReactNode, createContext, useContext, useState } from 'react';
+import Toggle from './Toggle';
+import Content from './Content';
 
 /**
  * TODOs:
@@ -32,38 +27,6 @@ interface CollapseComponent extends FC<Props> {
 
 const CollapseContext = createContext<Value | null>(null);
 
-const Toggle = ({ children, className = '' }: Props): ReactNode => {
-  const context = useContext(CollapseContext);
-
-  if (!context) {
-    throw new Error('Error');
-  }
-
-  const { toggle } = context;
-
-  const classNames = clsx('toggle', className);
-
-  return (
-    <Button className={classNames} onClick={toggle}>
-      {children}
-    </Button>
-  );
-};
-
-const Content = ({ children, className = '' }: Props): ReactNode => {
-  const context = useContext(CollapseContext);
-
-  if (!context) {
-    throw new Error('Error');
-  }
-
-  const { isOpen } = context;
-
-  const classNames = clsx('content', className, isOpen ? 'block' : 'hidden');
-
-  return <div className={classNames}>{children}</div>;
-};
-
 const Collapse: CollapseComponent = ({
   children,
   className = ''
@@ -85,4 +48,17 @@ const Collapse: CollapseComponent = ({
 Collapse.Toggle = Toggle;
 Collapse.Content = Content;
 
+const useCollapseContext = (): Value => {
+  const context = useContext(CollapseContext);
+
+  if (!context) {
+    throw new Error(
+      'useCollapseContext must be used within CollapseContextProvider'
+    );
+  }
+
+  return context;
+};
+
 export default Collapse;
+export { CollapseContext, useCollapseContext };

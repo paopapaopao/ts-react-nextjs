@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 const NavbarTop = (): ReactNode => {
   const styleClassNames = 'flex-1 px-8 py-4 flex justify-evenly gap-4';
