@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useReducer } from 'react';
+import { ReactNode, createContext, useContext, useReducer } from 'react';
 
 type State = {
   isOpen: boolean;

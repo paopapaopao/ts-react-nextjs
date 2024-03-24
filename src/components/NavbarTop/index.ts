@@ -1,3 +1,1 @@
-import NavbarTop from './NavbarTop';
-
-export default NavbarTop;
+export { default as NavbarTop } from './NavbarTop';

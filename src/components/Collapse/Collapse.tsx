@@ -1,9 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
-import { FC, ReactNode, createContext, useContext, useState } from 'react';
-import Toggle from './Toggle';
+import { FC, ReactNode, createContext, useState } from 'react';
 import Content from './Content';
+import Toggle from './Toggle';
 
 /**
  * TODOs:
@@ -21,8 +21,8 @@ type Value = {
 };
 
 interface CollapseComponent extends FC<Props> {
-  Toggle: FC<Props>;
   Content: FC<Props>;
+  Toggle: FC<Props>;
 }
 
 const CollapseContext = createContext<Value | null>(null);
@@ -45,20 +45,8 @@ const Collapse: CollapseComponent = ({
   );
 };
 
-Collapse.Toggle = Toggle;
 Collapse.Content = Content;
-
-const useCollapseContext = (): Value => {
-  const context = useContext(CollapseContext);
-
-  if (!context) {
-    throw new Error(
-      'useCollapseContext must be used within CollapseContextProvider'
-    );
-  }
-
-  return context;
-};
+Collapse.Toggle = Toggle;
 
 export default Collapse;
-export { CollapseContext, useCollapseContext };
+export { CollapseContext };

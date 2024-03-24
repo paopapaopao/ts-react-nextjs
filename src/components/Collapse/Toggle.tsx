@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { Button } from '..';
-import { useCollapseContext } from './Collapse';
+import useCollapseContext from './useCollapseContext';
 
 type Props = {
   children: ReactNode;

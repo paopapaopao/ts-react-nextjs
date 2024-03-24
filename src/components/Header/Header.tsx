@@ -10,8 +10,8 @@ type Props = {
 };
 
 interface HeaderComponent extends FC<Props> {
-  Left: FC<Props>;
   Center: FC<Props>;
+  Left: FC<Props>;
   Right: FC<Props>;
 }
 
@@ -25,8 +25,8 @@ const Header: HeaderComponent = ({
   return <header className={classNames}>{children}</header>;
 };
 
-Header.Left = Left;
 Header.Center = Center;
+Header.Left = Left;
 Header.Right = Right;
 
 export default Header;

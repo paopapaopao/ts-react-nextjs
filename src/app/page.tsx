@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-const Home = (): React.ReactNode => {
+const Home = (): ReactNode => {
   return (
     <main>
       <h2>Home</h2>
