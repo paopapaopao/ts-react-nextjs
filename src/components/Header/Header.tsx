@@ -1,5 +1,8 @@
 import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
+import Center from './Center';
+import Left from './Left';
+import Right from './Right';
 
 type Props = {
   children: ReactNode;
@@ -7,42 +10,26 @@ type Props = {
 };
 
 interface HeaderComponent extends FC<Props> {
-  Left: FC<Props>;
   Center: FC<Props>;
+  Left: FC<Props>;
   Right: FC<Props>;
 }
-
-const Left = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx('left', className);
-
-  return <div className={classNames}>{children}</div>;
-};
-
-const Center = ({ children, className = '' }: Props): ReactNode => {
-  const styleClassNames = 'flex-1 flex justify-center';
-  const classNames = clsx('center', styleClassNames, className);
-
-  return <div className={classNames}>{children}</div>;
-};
-
-const Right = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx('right', className);
-
-  return <div className={classNames}>{children}</div>;
-};
 
 const Header: HeaderComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const styleClassNames = 'sticky top-0 flex bg-white border-b';
-  const classNames = clsx('header', styleClassNames, className);
+  const classNames = clsx(
+    'header',
+    'sticky top-0 flex bg-white border-b',
+    className
+  );
 
   return <header className={classNames}>{children}</header>;
 };
 
-Header.Left = Left;
 Header.Center = Center;
+Header.Left = Left;
 Header.Right = Right;
 
 export default Header;

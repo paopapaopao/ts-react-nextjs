@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import './globals.css';
 import { Header, Modal, NavbarTop } from '@/components';
-import { ModalContextProvider } from '@/contexts';
+import { ModalProvider } from '@/providers';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,7 +20,7 @@ const RootLayout = ({ children }: Props): ReactNode => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ModalContextProvider>
+        <ModalProvider>
           <Header>
             <Header.Center>
               <NavbarTop />
@@ -28,7 +28,7 @@ const RootLayout = ({ children }: Props): ReactNode => {
           </Header>
           {children}
           <Modal />
-        </ModalContextProvider>
+        </ModalProvider>
       </body>
     </html>
   );

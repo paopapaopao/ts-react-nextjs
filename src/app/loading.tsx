@@ -1,13 +1,12 @@
 import clsx from 'clsx';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styles from './App.module.css';
 
 const Loading = (): ReactNode => {
-  const styleClassNames = 'py-8 flex flex-col items-center';
   const classNames = clsx(
     'loading-page',
-    styleClassNames,
-    styles['loading-page']
+    styles['loading-page'],
+    'py-8 flex flex-col items-center'
   );
 
   return (

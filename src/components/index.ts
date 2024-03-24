@@ -1,4 +1,5 @@
-export { default as Button } from './Button';
-export { default as Header } from './Header';
-export { default as Modal } from './Modal';
-export { default as NavbarTop } from './NavbarTop';
+export { Button } from './Button';
+export { Collapse } from './Collapse';
+export { Header } from './Header';
+export { Modal } from './Modal';
+export { NavbarTop } from './NavbarTop';

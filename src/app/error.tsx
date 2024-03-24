@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Button } from '@/components';
 import styles from './App.module.css';
 
@@ -14,8 +14,13 @@ type Props = {
 const Error = ({ error, reset }: Props): ReactNode => {
   const router = useRouter();
 
-  const styleClassNames = 'py-8 flex flex-col items-center gap-8';
-  const classNames = clsx('error-page', styleClassNames, styles['error-page']);
+  const classNames = clsx(
+    'error-page',
+    styles['error-page'],
+    'py-8 flex flex-col items-center gap-8'
+  );
+
+  const handleClick = (): void => router.push('/');
 
   return (
     <main className={classNames}>
@@ -25,7 +30,7 @@ const Error = ({ error, reset }: Props): ReactNode => {
       </p>
       <Button onClick={reset}>Try again</Button>
       <div className="flex gap-4">
-        <Button onClick={() => router.push('/')}>Go to Home page</Button>
+        <Button onClick={handleClick}>Go to Home page</Button>
         <Button onClick={router.back}>Return to previous page</Button>
       </div>
     </main>

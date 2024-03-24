@@ -2,18 +2,18 @@
 
 import clsx from 'clsx';
 import { ReactNode, useEffect, useRef } from 'react';
-import { useModalContext } from '@/contexts';
+import { useModal } from '@/hooks';
 import styles from './Modal.module.css';
 
 const Modal = (): ReactNode => {
-  const { state, close } = useModalContext();
+  const { state, close } = useModal();
 
   const ref = useRef<HTMLDialogElement>(null!);
 
   useEffect(() => {
     const dialogRef = ref.current;
 
-    const handleClose = () => {
+    const handleClose = (): void => {
       state.onClose?.();
       close();
     };
@@ -32,7 +32,7 @@ const Modal = (): ReactNode => {
     }
   }, [state.isOpen]);
 
-  const classNames = clsx(styles.modal, 'min-h-fit p-4 rounded-2xl');
+  const classNames = clsx('modal', styles.modal, 'min-h-fit p-4 rounded-2xl');
 
   return (
     <dialog

@@ -35,7 +35,7 @@ const Posts = (): ReactNode => {
         );
 
         if (!response.ok) {
-          throw new Error('An error occurred while fetching posts.');
+          throw new Error('An error occurred while getting posts.');
         }
 
         const posts = await response.json();
@@ -49,14 +49,18 @@ const Posts = (): ReactNode => {
     fetchPosts();
   }, []);
 
+  // TODO: Remove ||
   const filteredPosts = posts.filter(
     (post) =>
       post.title.includes(searchParams.get('query') || '') ||
       post.body.includes(searchParams.get('query') || '')
   );
 
-  const styleClassNames = 'py-8 flex flex-col items-center gap-4';
-  const classNames = clsx('posts-page', styleClassNames, styles['posts-page']);
+  const classNames = clsx(
+    'posts-page',
+    styles['posts-page'],
+    'py-8 flex flex-col items-center gap-4'
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const params = new URLSearchParams(searchParams);
