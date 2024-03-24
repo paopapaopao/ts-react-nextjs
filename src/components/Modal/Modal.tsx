@@ -2,11 +2,11 @@
 
 import clsx from 'clsx';
 import { ReactNode, useEffect, useRef } from 'react';
-import { useModalContext } from '@/contexts';
+import { useModal } from '@/hooks';
 import styles from './Modal.module.css';
 
 const Modal = (): ReactNode => {
-  const { state, close } = useModalContext();
+  const { state, close } = useModal();
 
   const ref = useRef<HTMLDialogElement>(null!);
 

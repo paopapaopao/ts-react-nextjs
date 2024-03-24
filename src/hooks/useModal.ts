@@ -1,6 +1,7 @@
 'use client';
 
-import { ReactNode, createContext } from 'react';
+import { ReactNode, useContext } from 'react';
+import { ModalContext } from '@/contexts';
 
 type State = {
   isOpen: boolean;
@@ -21,6 +22,14 @@ type Value = {
   close: () => void;
 };
 
-const ModalContext = createContext<Value | null>(null);
+const useModal = (): Value => {
+  const context = useContext(ModalContext);
 
-export default ModalContext;
+  if (!context) {
+    throw new Error('useModal must be used within ModalProvider');
+  }
+
+  return context;
+};
+
+export default useModal;
