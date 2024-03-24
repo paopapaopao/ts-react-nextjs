@@ -1,5 +1,3 @@
-'use client';
-
 import { ReactNode, createContext } from 'react';
 
 type State = {

@@ -7,8 +7,7 @@ type Props = {
 };
 
 const Center = ({ children, className = '' }: Props): ReactNode => {
-  const styleClassNames = 'flex-1 flex justify-center';
-  const classNames = clsx('center', styleClassNames, className);
+  const classNames = clsx('center', 'flex-1', className);
 
   return <div className={classNames}>{children}</div>;
 };

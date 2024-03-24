@@ -13,7 +13,7 @@ const Modal = (): ReactNode => {
   useEffect(() => {
     const dialogRef = ref.current;
 
-    const handleClose = () => {
+    const handleClose = (): void => {
       state.onClose?.();
       close();
     };
@@ -32,7 +32,7 @@ const Modal = (): ReactNode => {
     }
   }, [state.isOpen]);
 
-  const classNames = clsx(styles.modal, 'min-h-fit p-4 rounded-2xl');
+  const classNames = clsx('modal', styles.modal, 'min-h-fit p-4 rounded-2xl');
 
   return (
     <dialog

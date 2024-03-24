@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 
 const NavbarTop = (): ReactNode => {
-  const styleClassNames = 'flex-1 px-8 py-4 flex justify-evenly gap-4';
-  const classNames = clsx('navbar-top', styleClassNames);
+  const classNames = clsx(
+    'navbar-top',
+    'flex-1 px-8 py-4 flex justify-evenly gap-4'
+  );
 
   return (
     <nav className={classNames}>

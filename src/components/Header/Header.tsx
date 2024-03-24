@@ -19,8 +19,11 @@ const Header: HeaderComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const styleClassNames = 'sticky top-0 flex bg-white border-b';
-  const classNames = clsx('header', styleClassNames, className);
+  const classNames = clsx(
+    'header',
+    'sticky top-0 flex bg-white border-b',
+    className
+  );
 
   return <header className={classNames}>{children}</header>;
 };

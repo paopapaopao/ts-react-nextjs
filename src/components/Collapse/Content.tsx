@@ -1,16 +1,21 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-import useCollapseContext from './useCollapseContext';
+import useCollapse from './useCollapse';
 
 type Props = {
   children: ReactNode;
   className?: string;
 };
 
-const Content = ({ children, className = '' }: Props): ReactNode => {
-  const { isOpen } = useCollapseContext();
+/**
+ * TODOs:
+ *  - Add transition styles
+ */
 
-  const classNames = clsx('content', className, isOpen ? 'block' : 'hidden');
+const Content = ({ children, className = '' }: Props): ReactNode => {
+  const { isOpen } = useCollapse();
+
+  const classNames = clsx('content', isOpen ? 'block' : 'hidden', className);
 
   return <div className={classNames}>{children}</div>;
 };
