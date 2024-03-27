@@ -18,7 +18,11 @@ const Toggle = ({ children, className = '', index }: Props): ReactNode => {
   };
 
   return (
-    <CollapseToggle index={index} onClick={handleClick} className={className}>
+    <CollapseToggle
+      isToggled={toggledItemIndex === index}
+      onClick={handleClick}
+      className={className}
+    >
       {children}
     </CollapseToggle>
   );

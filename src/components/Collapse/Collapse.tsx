@@ -9,9 +9,16 @@ type Props = {
   className?: string;
 };
 
+type ToggleProps = {
+  children: ReactNode;
+  className?: string;
+  isToggled?: boolean;
+  onClick?: () => void;
+};
+
 interface CollapseComponent extends FC<Props> {
   Content: FC<Props>;
-  Toggle: FC<Props>;
+  Toggle: FC<ToggleProps>;
 }
 
 /**

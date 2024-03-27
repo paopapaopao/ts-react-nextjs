@@ -21,7 +21,7 @@ type Value = {
 };
 
 const useModal = (): Value => {
-  const context = useContext(ModalContext);
+  const context = useContext<Value | null>(ModalContext);
 
   if (!context) {
     throw new Error('useModal must be used within ModalProvider');

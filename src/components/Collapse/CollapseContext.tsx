@@ -4,6 +4,7 @@ import { createContext } from 'react';
 
 type Value = {
   isOpen: boolean;
+  close: () => void;
   toggle: () => void;
 };
 

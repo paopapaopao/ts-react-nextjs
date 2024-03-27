@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
 import AccordionProvider from './AccordionProvider';
 import Content from './Content';
@@ -25,9 +26,11 @@ const Accordion: AccordionComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
+  const classNames = clsx('accordion', 'flex flex-col', className);
+
   return (
     <AccordionProvider>
-      <div className="accordion">{children}</div>
+      <div className={classNames}>{children}</div>
     </AccordionProvider>
   );
 };
