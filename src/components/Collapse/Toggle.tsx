@@ -1,11 +1,15 @@
+'use client';
+
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Button } from '..';
 import useCollapse from './useCollapse';
 
 type Props = {
   children: ReactNode;
   className?: string;
+  isToggled?: boolean;
+  onClick?: () => void;
 };
 
 /**
@@ -13,13 +17,29 @@ type Props = {
  *  - Replace Button in Toggle with div
  */
 
-const Toggle = ({ children, className = '' }: Props): ReactNode => {
-  const { toggle } = useCollapse();
+const Toggle = ({
+  children,
+  className = '',
+  isToggled,
+  onClick = () => {}
+}: Props): ReactNode => {
+  const { isOpen, close, toggle } = useCollapse();
+
+  useEffect(() => {
+    if (isOpen && !isToggled) {
+      close();
+    }
+  }, [isToggled]);
 
   const classNames = clsx('toggle', className);
 
+  const handleClick = (): void => {
+    toggle();
+    onClick();
+  };
+
   return (
-    <Button className={classNames} onClick={toggle}>
+    <Button onClick={handleClick} className={classNames}>
       {children}
     </Button>
   );

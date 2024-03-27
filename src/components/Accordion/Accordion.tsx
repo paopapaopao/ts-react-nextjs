@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
-import CollapseProvider from './CollapseProvider';
+import AccordionProvider from './AccordionProvider';
 import Content from './Content';
+import Item from './Item';
 import Toggle from './Toggle';
 
 type Props = {
@@ -12,34 +13,30 @@ type Props = {
 type ToggleProps = {
   children: ReactNode;
   className?: string;
-  isToggled?: boolean;
-  onClick?: () => void;
+  index: number;
 };
 
-interface CollapseComponent extends FC<Props> {
+interface AccordionComponent extends FC<Props> {
   Content: FC<Props>;
+  Item: FC<Props>;
   Toggle: FC<ToggleProps>;
 }
 
-/**
- * TODOs:
- *  - Replace className
- */
-
-const Collapse: CollapseComponent = ({
+const Accordion: AccordionComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const classNames = clsx('collapsible', 'flex flex-col', className);
+  const classNames = clsx('accordion', 'flex flex-col', className);
 
   return (
-    <CollapseProvider>
+    <AccordionProvider>
       <div className={classNames}>{children}</div>
-    </CollapseProvider>
+    </AccordionProvider>
   );
 };
 
-Collapse.Content = Content;
-Collapse.Toggle = Toggle;
+Accordion.Content = Content;
+Accordion.Item = Item;
+Accordion.Toggle = Toggle;
 
-export default Collapse;
+export default Accordion;
