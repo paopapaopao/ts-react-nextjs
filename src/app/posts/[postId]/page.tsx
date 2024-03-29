@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
-import { type Post } from '@/types';
+import { Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './Post.module.css';
 
@@ -46,7 +46,7 @@ const Post = (): ReactNode => {
   );
 
   return (
-    <div className={classNames}>
+    <main className={classNames}>
       <h1 className="text-xl font-bold">Post {postId}</h1>
       <div
         className={clsx(
@@ -62,7 +62,7 @@ const Post = (): ReactNode => {
           {capitalizeFirstLetter(post?.body ?? '')}.
         </p>
       </div>
-    </div>
+    </main>
   );
 };
 
