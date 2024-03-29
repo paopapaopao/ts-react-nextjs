@@ -14,7 +14,7 @@ const CollapseProvider = ({ children }: Props): ReactNode => {
   const close = (): void => setIsOpen(false);
 
   return (
-    <CollapseContext.Provider value={{ isOpen, toggle, close }}>
+    <CollapseContext.Provider value={{ isOpen, close, toggle }}>
       {children}
     </CollapseContext.Provider>
   );
