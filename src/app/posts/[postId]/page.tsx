@@ -3,15 +3,14 @@
 import clsx from 'clsx';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
+import { type Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './Post.module.css';
 
-type Post = {
-  title: string;
-  body: string;
-  id: string;
-  userId: string;
-};
+/**
+ * TODOs:
+ *  - Fix rendering of post
+ */
 
 const Post = (): ReactNode => {
   const { postId } = useParams();
