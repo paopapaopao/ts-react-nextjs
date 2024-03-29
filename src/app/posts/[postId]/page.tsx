@@ -1,0 +1,70 @@
+'use client';
+
+import clsx from 'clsx';
+import { useParams } from 'next/navigation';
+import { ReactNode, useEffect, useState } from 'react';
+import { capitalizeFirstLetter } from '@/utils';
+import styles from './Post.module.css';
+
+type Post = {
+  title: string;
+  body: string;
+  id: string;
+  userId: string;
+};
+
+const Post = (): ReactNode => {
+  const { postId } = useParams();
+
+  const [post, setPost] = useState<Post | null>(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${postId}`
+        );
+
+        if (!response.ok) {
+          throw new Error('An error occurred while getting posts.');
+        }
+
+        const post = await response.json();
+
+        setPost(post);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
+
+  const classNames = clsx(
+    'post-page',
+    styles['post-page'],
+    'py-8 flex flex-col items-center gap-4'
+  );
+
+  return (
+    <div className={classNames}>
+      <h1 className="text-xl font-bold">Post {postId}</h1>
+      <div
+        className={clsx(
+          'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
+          styles.card
+        )}
+      >
+        <h4 className="text-lg font-bold text-black">
+          {capitalizeFirstLetter(post?.title ?? '')}
+        </h4>
+        <p className="text-base text-gray-800">
+          {capitalizeFirstLetter(post?.body ?? '')}.{' '}
+          {capitalizeFirstLetter(post?.body ?? '')}.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Post;
