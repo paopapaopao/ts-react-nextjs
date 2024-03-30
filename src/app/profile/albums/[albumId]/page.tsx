@@ -2,6 +2,7 @@
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { Photo } from '@/types';
@@ -51,14 +52,18 @@ const Album = (): ReactNode => {
       <h1 className="text-xl font-bold">Album {albumId} photos</h1>
       <div className="grid grid-cols-8 justify-items-center gap-4">
         {albumPhotos.map((albumPhoto, index) => (
-          <Image
-            src={albumPhoto.url}
-            alt={albumPhoto.title}
-            width={150}
-            height={150}
+          <Link
+            href={`/profile/albums/${albumId}/photos/${albumPhoto.id}`}
             key={index}
             className="hover:border hover:shadow-xl"
-          />
+          >
+            <Image
+              src={albumPhoto.url}
+              alt={albumPhoto.title}
+              width={150}
+              height={150}
+            />
+          </Link>
         ))}
       </div>
     </main>
