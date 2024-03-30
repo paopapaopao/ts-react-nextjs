@@ -7,6 +7,12 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Photo } from '@/types';
 import styles from './Album.module.css';
 
+/**
+ * TODOs:
+ *  - Add wrapping of photos
+ *  - Add intercepting & parallel routes
+ */
+
 const Album = (): ReactNode => {
   const { albumId } = useParams();
 
@@ -51,6 +57,7 @@ const Album = (): ReactNode => {
             width={150}
             height={150}
             key={index}
+            className="hover:border hover:shadow-xl"
           />
         ))}
       </div>
