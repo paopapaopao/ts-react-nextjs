@@ -1,8 +1,7 @@
-type Post = {
-  body: string;
+type Album = {
   id: number;
   title: string;
   userId: number;
 };
 
-export default Post;
+export default Album;

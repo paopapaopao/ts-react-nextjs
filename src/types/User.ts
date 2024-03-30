@@ -1,25 +1,25 @@
 type User = {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
   address: {
-    street: string;
-    suite: string;
     city: string;
-    zipcode: string;
     geo: {
       lat: string;
       lng: string;
     };
+    street: string;
+    suite: string;
+    zipcode: string;
   };
-  phone: string;
-  website: string;
   company: {
-    name: string;
-    catchPhrase: string;
     bs: string;
+    catchPhrase: string;
+    name: string;
   };
+  email: string;
+  id: number;
+  name: string;
+  phone: string;
+  username: string;
+  website: string;
 };
 
 export default User;
