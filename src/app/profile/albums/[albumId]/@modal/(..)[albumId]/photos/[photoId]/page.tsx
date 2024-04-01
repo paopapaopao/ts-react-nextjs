@@ -6,12 +6,12 @@ import { useParams, useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
-import styles from './Photo.module.css';
 
 /**
  * TODOs:
  *  - Update photo type / default value
  *  - Add close button
+ *  - Stop background automatic scroll when opening modal
  */
 
 const Photo = (): ReactNode => {
@@ -65,7 +65,6 @@ const Photo = (): ReactNode => {
 
   const classNames = clsx(
     'photo-modal',
-    styles['photo-modal'],
     'py-8 px-8 flex flex-col items-center gap-4 rounded-2xl'
   );
 
