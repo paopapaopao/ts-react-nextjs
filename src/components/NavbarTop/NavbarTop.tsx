@@ -10,12 +10,11 @@ const NavbarTop = (): ReactNode => {
 
   return (
     <nav className={classNames}>
+      <Link href="/" className="">
+        Home
+      </Link>
       <Link href="/profile">Profile</Link>
-      <Link href="/posts">Posts</Link>
       <Link href="/comments">Comments</Link>
-      <Link href="/albums">Albums</Link>
-      <Link href="/photos">Photos</Link>
-      <Link href="/todos">Todos</Link>
       <Link href="/users">Users</Link>
     </nav>
   );

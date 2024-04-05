@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 import { Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
@@ -48,21 +49,22 @@ const Profile = (): ReactNode => {
     <main className={classNames}>
       <h1 className="text-xl font-bold">User {USER_ID} posts</h1>
       {userPosts.map((userPost) => (
-        <div
+        <Link
+          href={`/posts/${userPost.id}`}
           key={userPost.id}
           className={clsx(
-            'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
+            'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg hover:shadow-xl',
             styles.card
           )}
         >
           <h4 className="text-lg font-bold text-black">
-            {capitalizeFirstLetter(userPost?.title ?? '')}
+            {capitalizeFirstLetter(userPost?.title)}
           </h4>
           <p className="text-base text-gray-800">
-            {capitalizeFirstLetter(userPost?.body ?? '')}.{' '}
-            {capitalizeFirstLetter(userPost?.body ?? '')}.
+            {capitalizeFirstLetter(userPost?.body)}.{' '}
+            {capitalizeFirstLetter(userPost?.body)}.
           </p>
-        </div>
+        </Link>
       ))}
     </main>
   );

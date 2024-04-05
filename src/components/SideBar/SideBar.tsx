@@ -7,6 +7,11 @@ type Props = {
   className?: string;
 };
 
+/**
+ * *NOTEs
+ *  - Left Sidebar
+ */
+
 const SideBar = ({ children, className }: Props): ReactNode => {
   const classNames = clsx(
     'side-bar',
