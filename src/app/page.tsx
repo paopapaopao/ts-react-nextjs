@@ -51,6 +51,10 @@ const Home = (): ReactNode => {
       post.body.includes(searchParams.get('query') || '')
   );
 
+  const hasFilteredPosts =
+    !searchParams.get('query') ||
+    (!!searchParams.get('query') && filteredPosts.length > 0);
+
   const classNames = clsx(
     'home-page',
     styles['home-page'],
@@ -83,15 +87,13 @@ const Home = (): ReactNode => {
           onChange={handleChange}
         />
       </div>
-      {filteredPosts.map((post) => (
-        <Link
-          href={`/posts/${post.id}`}
-          className="hover:shadow-xl"
-          key={post.id}
-        >
-          <div
+      {hasFilteredPosts ? (
+        filteredPosts.map((post) => (
+          <Link
+            href={`/posts/${post.id}`}
+            key={post.id}
             className={clsx(
-              'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
+              'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg hover:shadow-xl',
               styles.card
             )}
           >
@@ -102,9 +104,14 @@ const Home = (): ReactNode => {
               {capitalizeFirstLetter(post?.body)}.{' '}
               {capitalizeFirstLetter(post?.body)}.
             </p>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))
+      ) : (
+        <h1 className="text-xl font-bold">
+          No posts with the search query{' '}
+          <span className="text-blue-700">'{searchParams.get('query')}'</span>
+        </h1>
+      )}
     </main>
   );
 };
