@@ -1,0 +1,4 @@
+.side-bar {
+  top: 57px;
+  height: calc(100dvh - 57px);
+}
