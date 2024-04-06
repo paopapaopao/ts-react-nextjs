@@ -14,6 +14,7 @@ const Layout = ({ children }: Props): ReactNode => {
   return (
     <div className={classNames}>
       <SideBar>
+        <Link href="/profile/posts">Posts</Link>
         <Link href="/profile/albums">Albums</Link>
         <Link href="/profile/todos">TO-DOs</Link>
       </SideBar>

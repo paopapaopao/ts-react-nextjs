@@ -10,6 +10,10 @@
   min-height: calc(100dvh - 57px);
 }
 
+.profile-picture {
+  border-radius: 50%;
+}
+
 .card {
   width: 1024px;
 }
