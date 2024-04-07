@@ -1,16 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { PostCard } from '@/components';
 import { Post } from '@/types';
-import { capitalizeFirstLetter } from '@/utils';
 import styles from './App.module.css';
 
 /**
  * TODOs:
- *  - Move card component to its own file
  *  - Wrap filteredPosts in Suspense
  *  - Add debounce
  */
@@ -88,24 +86,7 @@ const Home = (): ReactNode => {
         />
       </div>
       {hasFilteredPosts ? (
-        filteredPosts.map((post) => (
-          <Link
-            href={`/posts/${post.id}`}
-            key={post.id}
-            className={clsx(
-              'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg hover:shadow-xl',
-              styles.card
-            )}
-          >
-            <h4 className="text-lg font-bold text-black">
-              {capitalizeFirstLetter(post?.title)}
-            </h4>
-            <p className="text-base text-gray-800">
-              {capitalizeFirstLetter(post?.body)}.{' '}
-              {capitalizeFirstLetter(post?.body)}.
-            </p>
-          </Link>
-        ))
+        filteredPosts.map((post) => <PostCard post={post} key={post.id} />)
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}
