@@ -41,7 +41,7 @@ const Profile = (): ReactNode => {
 
   return (
     <main className={classNames}>
-      <h1 className="text-xl font-bold">User {USER_ID}'s Profile</h1>
+      <h1 className="text-xl font-bold">Profile</h1>
       <Image
         src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
         alt="Default profile photo"

@@ -6,15 +6,14 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { Photo } from '@/types';
-import styles from './Album.module.css';
+import styles from './UserAlbum.module.css';
 
 /**
  * TODOs:
  *  - Add wrapping of photos
- *  - Add intercepting & parallel routes
  */
 
-const Album = (): ReactNode => {
+const UserAlbum = (): ReactNode => {
   const { albumId } = useParams();
 
   const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
@@ -42,20 +41,20 @@ const Album = (): ReactNode => {
   }, []);
 
   const classNames = clsx(
-    'album-page',
-    styles['album-page'],
+    'user-album-page',
+    styles['user-album-page'],
     'py-8 flex flex-col items-center gap-4'
   );
 
   return (
     <main className={classNames}>
-      <h1 className="text-xl font-bold">Album {albumId} photos</h1>
+      <h1 className="text-xl font-bold">Album {albumId} Photos</h1>
       <div className="grid grid-cols-8 justify-items-center gap-4">
-        {albumPhotos.map((albumPhoto, index) => (
+        {albumPhotos.map((albumPhoto) => (
           <Link
             href={`/profile/albums/${albumId}/photos/${albumPhoto.id}`}
-            key={index}
-            className="hover:border hover:shadow-xl"
+            key={albumPhoto.id}
+            className="hover:shadow-2xl"
           >
             <Image
               src={albumPhoto.url}
@@ -70,4 +69,4 @@ const Album = (): ReactNode => {
   );
 };
 
-export default Album;
+export default UserAlbum;

@@ -5,11 +5,16 @@ import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 import { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
-import styles from './Albums.module.css';
+import styles from './UserAlbums.module.css';
 
 const USER_ID = 1;
 
-const Albums = (): ReactNode => {
+/**
+ * TODOs
+ *  - Add search/filter
+ */
+
+const UserAlbums = (): ReactNode => {
   const [userAlbums, setUserAlbums] = useState<Album[]>([]);
 
   useEffect(() => {
@@ -35,34 +40,30 @@ const Albums = (): ReactNode => {
   }, []);
 
   const classNames = clsx(
-    'albums-page',
-    styles['albums-page'],
+    'user-albums-page',
+    styles['user-albums-page'],
     'py-8 flex flex-col items-center gap-4'
   );
 
   return (
     <main className={classNames}>
-      <h1 className="text-xl font-bold">User {USER_ID}'s Albums</h1>
+      <h1 className="text-xl font-bold">Albums</h1>
       {userAlbums.map((userAlbum) => (
         <Link
           href={`/profile/albums/${userAlbum.id}`}
           key={userAlbum.id}
-          className="hover:shadow-xl"
+          className={clsx(
+            styles['album-card'],
+            'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg hover:shadow-xl'
+          )}
         >
-          <div
-            className={clsx(
-              'px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg',
-              styles.card
-            )}
-          >
-            <h4 className="text-lg font-bold text-black">
-              {capitalizeFirstLetter(userAlbum?.title ?? '')}
-            </h4>
-          </div>
+          <h4 className="text-lg font-bold text-black">
+            {capitalizeFirstLetter(userAlbum?.title ?? '')}
+          </h4>
         </Link>
       ))}
     </main>
   );
 };
 
-export default Albums;
+export default UserAlbums;

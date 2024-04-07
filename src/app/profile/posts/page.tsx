@@ -8,6 +8,12 @@ import styles from './UserPosts.module.css';
 
 const USER_ID = 1;
 
+/**
+ * TODOs
+ *  - Add search/filter
+ *  - Add intercepting & parallel routes
+ */
+
 const UserPosts = (): ReactNode => {
   const [userPosts, setUserPosts] = useState<Post[]>([]);
 
@@ -41,7 +47,7 @@ const UserPosts = (): ReactNode => {
 
   return (
     <main className={classNames}>
-      <h1 className="text-xl font-bold">User {USER_ID}'s Posts</h1>
+      <h1 className="text-xl font-bold">Posts</h1>
       {userPosts.map((userPost) => (
         <PostCard post={userPost} key={userPost.id} />
       ))}

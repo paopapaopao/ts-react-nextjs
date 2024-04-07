@@ -6,17 +6,17 @@ import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
-import styles from './Photo.module.css';
+import styles from './AlbumPhoto.module.css';
 
 /**
  * TODOs:
  *  - Update photo type / default value
  */
 
-const Photo = (): ReactNode => {
+const AlbumPhoto = (): ReactNode => {
   const { albumId, photoId } = useParams();
 
-  const [photo, setPhoto] = useState<Photo>({
+  const [albumPhoto, setAlbumPhoto] = useState<Photo>({
     albumId: -1,
     id: -1,
     thumbnailUrl: '',
@@ -35,9 +35,9 @@ const Photo = (): ReactNode => {
           throw new Error('An error occurred while getting album photo.');
         }
 
-        const photo = await response.json();
+        const albumPhoto = await response.json();
 
-        setPhoto(photo[0]);
+        setAlbumPhoto(albumPhoto[0]);
       } catch (error) {
         console.error(error);
       }
@@ -47,26 +47,26 @@ const Photo = (): ReactNode => {
   }, []);
 
   const classNames = clsx(
-    'photo-page',
-    styles['photo-page'],
+    'album-photo-page',
+    styles['album-photo-page'],
     'py-8 flex flex-col items-center gap-4'
   );
 
   return (
     <main className={classNames}>
       <h1 className="text-xl font-bold">
-        Photo {photoId} of Album {albumId}
+        Photo {photoId} (Album {albumId})
       </h1>
       <Image
-        src={photo.url}
-        alt={photo.title}
+        src={albumPhoto.url}
+        alt={albumPhoto.title}
         width={600}
         height={600}
         className="flex justify-center items-center"
       />
-      <i className="text-xl">{capitalizeFirstLetter(photo.title)}</i>
+      <i className="text-xl">{capitalizeFirstLetter(albumPhoto.title)}</i>
     </main>
   );
 };
 
-export default Photo;
+export default AlbumPhoto;
