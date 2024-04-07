@@ -6,14 +6,14 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { Photo } from '@/types';
-import styles from './UserAlbum.module.css';
+import styles from './AlbumPhotos.module.css';
 
 /**
  * TODOs:
  *  - Add wrapping of photos
  */
 
-const UserAlbum = (): ReactNode => {
+const AlbumPhotos = (): ReactNode => {
   const { albumId } = useParams();
 
   const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
@@ -41,8 +41,8 @@ const UserAlbum = (): ReactNode => {
   }, []);
 
   const classNames = clsx(
-    'user-album-page',
-    styles['user-album-page'],
+    'album-photos-page',
+    styles['album-photos-page'],
     'py-8 flex flex-col items-center gap-4'
   );
 
@@ -69,4 +69,4 @@ const UserAlbum = (): ReactNode => {
   );
 };
 
-export default UserAlbum;
+export default AlbumPhotos;

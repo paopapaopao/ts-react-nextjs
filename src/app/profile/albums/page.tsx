@@ -50,7 +50,7 @@ const UserAlbums = (): ReactNode => {
       <h1 className="text-xl font-bold">Albums</h1>
       {userAlbums.map((userAlbum) => (
         <Link
-          href={`/profile/albums/${userAlbum.id}`}
+          href={`/profile/albums/${userAlbum.id}/photos`}
           key={userAlbum.id}
           className={clsx(
             styles['album-card'],
