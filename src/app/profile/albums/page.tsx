@@ -42,7 +42,7 @@ const Albums = (): ReactNode => {
 
   return (
     <main className={classNames}>
-      <h1 className="text-xl font-bold">User {USER_ID} albums</h1>
+      <h1 className="text-xl font-bold">User {USER_ID}'s Albums</h1>
       {userAlbums.map((userAlbum) => (
         <Link
           href={`/profile/albums/${userAlbum.id}`}
