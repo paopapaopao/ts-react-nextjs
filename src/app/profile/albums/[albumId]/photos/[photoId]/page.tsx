@@ -49,7 +49,7 @@ const AlbumPhoto = (): ReactNode => {
   const classNames = clsx(
     'album-photo-page',
     styles['album-photo-page'],
-    'py-8 flex flex-col items-center gap-4'
+    'p-8 flex flex-col items-center gap-4'
   );
 
   return (

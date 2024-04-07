@@ -11,6 +11,7 @@ import styles from './AlbumPhotos.module.css';
 /**
  * TODOs:
  *  - Add wrapping of photos
+ *  - Add search/filter
  */
 
 const AlbumPhotos = (): ReactNode => {
@@ -43,7 +44,7 @@ const AlbumPhotos = (): ReactNode => {
   const classNames = clsx(
     'album-photos-page',
     styles['album-photos-page'],
-    'py-8 flex flex-col items-center gap-4'
+    'p-8 flex flex-col items-center gap-4'
   );
 
   return (

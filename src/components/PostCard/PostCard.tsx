@@ -19,9 +19,9 @@ type Props = {
 const PostCard = ({ className, isLink = true, post }: Props): ReactNode => {
   const classNames = clsx(
     'post-card',
-    `px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg ${isLink && 'hover:shadow-xl'}`,
     styles['post-card'],
     isLink && styles['post-card-link'],
+    `px-8 py-4 flex flex-col bg-white rounded-lg shadow-lg ${isLink && 'hover:shadow-xl'}`,
     className
   );
 

@@ -5,9 +5,9 @@ import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import { Post } from '@/types';
-import styles from './Post.module.css';
+import styles from './PostDetails.module.css';
 
-const Post = (): ReactNode => {
+const PostDetails = (): ReactNode => {
   const { postId } = useParams();
 
   const [post, setPost] = useState<Post | null>(null);
@@ -35,9 +35,9 @@ const Post = (): ReactNode => {
   }, []);
 
   const classNames = clsx(
-    'post-page',
-    styles['post-page'],
-    'py-8 flex flex-col items-center gap-4'
+    'post-details-page',
+    styles['post-details-page'],
+    'p-8 flex flex-col items-center gap-4'
   );
 
   return (
@@ -48,4 +48,4 @@ const Post = (): ReactNode => {
   );
 };
 
-export default Post;
+export default PostDetails;
