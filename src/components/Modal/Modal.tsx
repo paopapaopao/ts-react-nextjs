@@ -32,7 +32,11 @@ const Modal = (): ReactNode => {
     }
   }, [state.isOpen]);
 
-  const classNames = clsx('modal', styles.modal, 'min-h-fit p-4 rounded-2xl');
+  const classNames = clsx(
+    'modal',
+    'min-h-fit p-4 rounded-2xl',
+    styles['modal']
+  );
 
   return (
     <dialog
