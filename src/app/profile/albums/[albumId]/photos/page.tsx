@@ -5,8 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
-import { Photo } from '@/types';
-import styles from './AlbumPhotos.module.css';
+import { type Photo } from '@/types';
 
 /**
  * TODOs:
@@ -41,9 +40,8 @@ const AlbumPhotos = (): ReactNode => {
     fetchAlbumPhotos();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'album-photos-page',
-    styles['album-photos-page'],
     'p-8 flex flex-col items-center gap-4'
   );
 
@@ -51,7 +49,7 @@ const AlbumPhotos = (): ReactNode => {
     <main className={classNames}>
       <h1 className="text-xl font-bold">Album {albumId} Photos</h1>
       <div className="grid grid-cols-8 justify-items-center gap-4">
-        {albumPhotos.map((albumPhoto) => (
+        {albumPhotos.map((albumPhoto: Photo) => (
           <Link
             href={`/profile/albums/${albumId}/photos/${albumPhoto.id}`}
             key={albumPhoto.id}

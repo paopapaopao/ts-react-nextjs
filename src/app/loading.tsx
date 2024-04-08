@@ -3,10 +3,10 @@ import { ReactNode } from 'react';
 import styles from './App.module.css';
 
 const Loading = (): ReactNode => {
-  const classNames = clsx(
+  const classNames: string = clsx(
     'loading-page',
     styles['loading-page'],
-    'py-8 flex flex-col items-center'
+    'p-8 flex flex-col items-center'
   );
 
   return (

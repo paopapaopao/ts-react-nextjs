@@ -1,7 +1,3 @@
-.user-albums-page {
-  min-height: calc(100dvh - 57px);
-}
-
 .album-card {
   width: 512px;
 }

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { Post } from '@/types';
+import { type Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 

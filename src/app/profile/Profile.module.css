@@ -4,9 +4,6 @@
 
 .profile-layout > main {
   flex: 1 0;
-}
-
-.profile-page {
   min-height: calc(100dvh - 57px);
 }
 

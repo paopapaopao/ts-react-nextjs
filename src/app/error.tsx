@@ -12,15 +12,15 @@ type Props = {
 };
 
 const Error = ({ error, reset }: Props): ReactNode => {
-  const router = useRouter();
+  const { back, push } = useRouter();
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'error-page',
     styles['error-page'],
-    'py-8 flex flex-col items-center gap-8'
+    'p-8 flex flex-col items-center gap-8'
   );
 
-  const handleClick = (): void => router.push('/');
+  const handleClick = (): void => push('/');
 
   return (
     <main className={classNames}>
@@ -30,8 +30,8 @@ const Error = ({ error, reset }: Props): ReactNode => {
       </p>
       <Button onClick={reset}>Try again</Button>
       <div className="flex gap-4">
+        <Button onClick={back}>Return to previous page</Button>
         <Button onClick={handleClick}>Go to Home page</Button>
-        <Button onClick={router.back}>Return to previous page</Button>
       </div>
     </main>
   );

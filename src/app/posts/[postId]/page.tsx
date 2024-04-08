@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { Post } from '@/types';
+import { type Post } from '@/types';
 import styles from './PostDetails.module.css';
 
 const PostDetails = (): ReactNode => {
@@ -20,7 +20,7 @@ const PostDetails = (): ReactNode => {
         );
 
         if (!response.ok) {
-          throw new Error('An error occurred while getting posts.');
+          throw new Error('An error occurred while getting post.');
         }
 
         const post = await response.json();
@@ -34,7 +34,7 @@ const PostDetails = (): ReactNode => {
     fetchPost();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'post-details-page',
     styles['post-details-page'],
     'p-8 flex flex-col items-center gap-4'

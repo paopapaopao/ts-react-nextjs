@@ -3,15 +3,13 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { Post } from '@/types';
-import styles from './UserPosts.module.css';
+import { type Post } from '@/types';
 
 const USER_ID = 1;
 
 /**
  * TODOs
  *  - Add search/filter
- *  - Add intercepting & parallel routes
  */
 
 const UserPosts = (): ReactNode => {
@@ -39,16 +37,15 @@ const UserPosts = (): ReactNode => {
     fetchUserPosts();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'user-posts-page',
-    styles['user-posts-page'],
     'p-8 flex flex-col items-center gap-4'
   );
 
   return (
     <main className={classNames}>
       <h1 className="text-xl font-bold">Posts</h1>
-      {userPosts.map((userPost) => (
+      {userPosts.map((userPost: Post) => (
         <PostCard post={userPost} key={userPost.id} />
       ))}
     </main>

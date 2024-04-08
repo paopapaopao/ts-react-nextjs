@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { ReactNode, useEffect, useState } from 'react';
-import { User } from '@/types';
+import { type User } from '@/types';
 import styles from './Profile.module.css';
 
 const USER_ID = 1;
@@ -19,7 +19,7 @@ const Profile = (): ReactNode => {
         );
 
         if (!response.ok) {
-          throw new Error('An error occurred while getting user data.');
+          throw new Error('An error occurred while getting user.');
         }
 
         const user = await response.json();
@@ -33,9 +33,8 @@ const Profile = (): ReactNode => {
     fetchUser();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'profile-page',
-    styles['profile-page'],
     'p-8 flex flex-col items-center gap-8'
   );
 

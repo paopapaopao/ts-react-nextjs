@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
-import { Album } from '@/types';
+import { type Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
 
@@ -39,16 +39,15 @@ const UserAlbums = (): ReactNode => {
     fetchUserAlbums();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'user-albums-page',
-    styles['user-albums-page'],
     'p-8 flex flex-col items-center gap-4'
   );
 
   return (
     <main className={classNames}>
       <h1 className="text-xl font-bold">Albums</h1>
-      {userAlbums.map((userAlbum) => (
+      {userAlbums.map((userAlbum: Album) => (
         <Link
           href={`/profile/albums/${userAlbum.id}/photos`}
           key={userAlbum.id}
