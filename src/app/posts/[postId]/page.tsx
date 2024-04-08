@@ -20,7 +20,7 @@ const PostDetails = (): ReactNode => {
         );
 
         if (!response.ok) {
-          throw new Error('An error occurred while getting posts.');
+          throw new Error('An error occurred while getting post data.');
         }
 
         const post = await response.json();
