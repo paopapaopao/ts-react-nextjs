@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { Post } from '@/types';
+import { type Post } from '@/types';
 import styles from './App.module.css';
 
 /**
@@ -43,24 +43,24 @@ const Home = (): ReactNode => {
   }, []);
 
   // TODO: Remove ||
-  const filteredPosts = posts.filter(
-    (post) =>
+  const filteredPosts: Post[] = posts.filter(
+    (post: Post) =>
       post.title.includes(searchParams.get('query') || '') ||
       post.body.includes(searchParams.get('query') || '')
   );
 
-  const hasFilteredPosts =
+  const hasFilteredPosts: boolean =
     !searchParams.get('query') ||
     (!!searchParams.get('query') && filteredPosts.length > 0);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'home-page',
     styles['home-page'],
-    'py-8 flex flex-col items-center gap-4'
+    'p-8 flex flex-col items-center gap-4'
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const params = new URLSearchParams(searchParams);
+    const params: URLSearchParams = new URLSearchParams(searchParams);
 
     if (event.target.value) {
       params.set('query', event.target.value);
@@ -86,7 +86,9 @@ const Home = (): ReactNode => {
         />
       </div>
       {hasFilteredPosts ? (
-        filteredPosts.map((post) => <PostCard post={post} key={post.id} />)
+        filteredPosts.map((post: Post) => (
+          <PostCard post={post} key={post.id} />
+        ))
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}

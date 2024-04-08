@@ -3,8 +3,8 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Photo } from '@/types';
+import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import { type Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 /**
@@ -51,40 +51,42 @@ const AlbumPhoto = (): ReactNode => {
   }, []);
 
   useEffect(() => {
-    const dialogRef = ref.current;
+    const dialogRef: HTMLDialogElement = ref.current;
 
     dialogRef.addEventListener('close', back);
 
-    return () => dialogRef.removeEventListener('close', back);
+    return (): void => dialogRef.removeEventListener('close', back);
   }, []);
 
   useEffect(() => {
-    const dialogRef = ref.current;
+    const dialogRef: HTMLDialogElement = ref.current;
 
     if (dialogRef) {
       dialogRef.showModal();
     }
   }, [ref.current]);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'album-photo-modal',
     'p-8 flex flex-col items-center gap-4 rounded-2xl'
   );
 
+  const handleClick = (event: MouseEvent): void => {
+    const dialogDimensions = event.currentTarget.getBoundingClientRect();
+
+    if (
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right ||
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom
+    ) {
+      back();
+    }
+  };
+
   return (
     <dialog
-      onClick={(event) => {
-        const dialogDimensions = event.currentTarget.getBoundingClientRect();
-
-        if (
-          event.clientX < dialogDimensions.left ||
-          event.clientX > dialogDimensions.right ||
-          event.clientY < dialogDimensions.top ||
-          event.clientY > dialogDimensions.bottom
-        ) {
-          back();
-        }
-      }}
+      onClick={handleClick}
       onKeyDown={(event) => {
         if (event.key === 'Escape') {
           event.preventDefault();

@@ -4,9 +4,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
-import { Photo } from '@/types';
+import { type Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
-import styles from './AlbumPhoto.module.css';
 
 /**
  * TODOs:
@@ -46,9 +45,8 @@ const AlbumPhoto = (): ReactNode => {
     fetchAlbumPhoto();
   }, []);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'album-photo-page',
-    styles['album-photo-page'],
     'p-8 flex flex-col items-center gap-4'
   );
 

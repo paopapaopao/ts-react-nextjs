@@ -2,9 +2,11 @@
 
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Post } from '@/types';
+import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { PostCard } from '@/components';
+import { type Post } from '@/types';
+
+const USER_ID = 1;
 
 const UserPost = (): ReactNode => {
   const { postId } = useParams();
@@ -17,16 +19,16 @@ const UserPost = (): ReactNode => {
     const fetchUserPost = async () => {
       try {
         const response = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${postId}`
+          `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts?id=${postId}`
         );
 
         if (!response.ok) {
-          throw new Error('An error occurred while getting post data.');
+          throw new Error('An error occurred while getting user post.');
         }
 
         const userPost = await response.json();
 
-        setUserPost(userPost);
+        setUserPost(userPost[0]);
       } catch (error) {
         console.error(error);
       }
@@ -36,40 +38,42 @@ const UserPost = (): ReactNode => {
   }, []);
 
   useEffect(() => {
-    const dialogRef = ref.current;
+    const dialogRef: HTMLDialogElement = ref.current;
 
     dialogRef.addEventListener('close', back);
 
-    return () => dialogRef.removeEventListener('close', back);
+    return (): void => dialogRef.removeEventListener('close', back);
   }, []);
 
   useEffect(() => {
-    const dialogRef = ref.current;
+    const dialogRef: HTMLDialogElement = ref.current;
 
     if (dialogRef) {
       dialogRef.showModal();
     }
   }, [ref.current]);
 
-  const classNames = clsx(
+  const classNames: string = clsx(
     'user-post-modal',
     'p-8 flex flex-col items-center gap-4 rounded-2xl'
   );
 
+  const handleClick = (event: MouseEvent): void => {
+    const dialogDimensions = event.currentTarget.getBoundingClientRect();
+
+    if (
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right ||
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom
+    ) {
+      back();
+    }
+  };
+
   return (
     <dialog
-      onClick={(event) => {
-        const dialogDimensions = event.currentTarget.getBoundingClientRect();
-
-        if (
-          event.clientX < dialogDimensions.left ||
-          event.clientX > dialogDimensions.right ||
-          event.clientY < dialogDimensions.top ||
-          event.clientY > dialogDimensions.bottom
-        ) {
-          back();
-        }
-      }}
+      onClick={handleClick}
       onKeyDown={(event) => {
         if (event.key === 'Escape') {
           event.preventDefault();

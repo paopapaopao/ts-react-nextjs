@@ -8,6 +8,11 @@ type Props = {
   children: ReactNode;
 };
 
+/**
+ * TODOs:
+ *  - Fix Sidebar shrinking
+ */
+
 const Layout = ({ children }: Props): ReactNode => {
   const classNames = clsx('profile-layout', styles['profile-layout']);
 

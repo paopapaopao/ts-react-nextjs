@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Header, Modal, NavbarTop } from '@/components';
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-interface Props {
+type Props = {
   children: ReactNode;
-}
+};
 
 const RootLayout = ({ children }: Props): ReactNode => {
   return (
