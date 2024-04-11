@@ -14,7 +14,7 @@ type Props = {
  */
 
 const Layout = ({ children }: Props): ReactNode => {
-  const classNames = clsx('profile-layout', styles['profile-layout']);
+  const classNames: string = clsx('profile-layout', styles['profile-layout']);
 
   return (
     <div className={classNames}>

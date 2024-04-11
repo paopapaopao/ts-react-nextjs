@@ -6,7 +6,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import type { User } from '@/types';
 import styles from './Profile.module.css';
 
-const USER_ID = 1;
+const USER_ID: number = 1;
 
 const Profile = (): ReactNode => {
   const [user, setUser] = useState<User | null>(null);

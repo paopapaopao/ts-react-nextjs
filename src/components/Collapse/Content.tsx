@@ -15,7 +15,11 @@ type Props = {
 const Content = ({ children, className = '' }: Props): ReactNode => {
   const { isOpen } = useCollapse();
 
-  const classNames = clsx('content', isOpen ? 'block' : 'hidden', className);
+  const classNames: string = clsx(
+    'content',
+    isOpen ? 'block' : 'hidden',
+    className
+  );
 
   return <div className={classNames}>{children}</div>;
 };

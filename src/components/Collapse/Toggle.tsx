@@ -31,7 +31,7 @@ const Toggle = ({
     }
   }, [isToggled]);
 
-  const classNames = clsx('toggle', className);
+  const classNames: string = clsx('toggle', className);
 
   const handleClick = (): void => {
     toggle();

@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Post } from '@/types';
 
-const USER_ID = 1;
+const USER_ID: number = 1;
 
 /**
  * TODOs

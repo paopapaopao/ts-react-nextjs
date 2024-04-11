@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Right = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx('right', className);
+  const classNames: string = clsx('right', className);
 
   return <div className={classNames}>{children}</div>;
 };

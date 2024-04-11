@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import type { Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
-const USER_ID = 1;
+const USER_ID: number = 1;
 
 const UserTodos = (): ReactNode => {
   const [userTodos, setUserTodos] = useState<Todo[]>([]);

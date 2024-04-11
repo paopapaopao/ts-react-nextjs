@@ -7,7 +7,7 @@ import type { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
 
-const USER_ID = 1;
+const USER_ID: number = 1;
 
 /**
  * TODOs

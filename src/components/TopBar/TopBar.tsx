@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 
 const TopBar = (): ReactNode => {
-  const classNames = clsx(
+  const classNames: string = clsx(
     'top-bar',
     'flex-1 px-8 py-4 flex justify-evenly gap-4'
   );

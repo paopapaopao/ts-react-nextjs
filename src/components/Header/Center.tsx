@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Center = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx('center', 'flex-1', className);
+  const classNames: string = clsx('center', 'flex-1', className);
 
   return <div className={classNames}>{children}</div>;
 };
