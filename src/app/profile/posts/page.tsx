@@ -46,7 +46,7 @@ const UserPosts = (): ReactNode => {
     <main className={classNames}>
       <h1 className="text-xl font-bold">Posts</h1>
       {userPosts.map((userPost: Post) => (
-        <PostCard post={userPost} key={userPost.id} isLink />
+        <PostCard post={userPost} isLink key={userPost.id} />
       ))}
     </main>
   );

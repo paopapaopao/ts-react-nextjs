@@ -8,7 +8,7 @@ import styles from './PostCard.module.css';
 
 type Props = {
   className?: string;
-  comments: Comment[];
+  comments?: Comment[];
   isLink?: boolean;
   post: Post | null;
 };
@@ -20,7 +20,7 @@ type Props = {
 
 const PostCard = ({
   className = '',
-  comments,
+  comments = [],
   isLink = false,
   post
 }: Props): ReactNode => {
