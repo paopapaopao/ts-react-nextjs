@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import { type Photo } from '@/types';
+import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 /**

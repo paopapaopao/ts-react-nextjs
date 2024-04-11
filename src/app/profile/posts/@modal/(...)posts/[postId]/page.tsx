@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
 import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Comment, type Post } from '@/types';
+import type { Comment, Post } from '@/types';
 
 const USER_ID = 1;
 

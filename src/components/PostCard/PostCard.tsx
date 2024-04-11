@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { type Comment, type Post } from '@/types';
+import type { Comment, Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 

@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Post } from '@/types';
+import type { Post } from '@/types';
 
 const USER_ID = 1;
 

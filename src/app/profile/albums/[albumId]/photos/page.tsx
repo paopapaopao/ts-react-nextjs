@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
-import { type Photo } from '@/types';
+import type { Photo } from '@/types';
 
 /**
  * TODOs:

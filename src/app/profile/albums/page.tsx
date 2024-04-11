@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
-import { type Album } from '@/types';
+import type { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
 
