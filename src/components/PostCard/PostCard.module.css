@@ -9,3 +9,7 @@
 .post-card-link:hover .title {
   color: #166534;
 }
+
+.profile-picture {
+  border-radius: 50%;
+}
