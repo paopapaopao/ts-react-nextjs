@@ -30,7 +30,7 @@ const Collapse: CollapseComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const classNames = clsx('collapsible', 'flex flex-col', className);
+  const classNames: string = clsx('collapsible', 'flex flex-col', className);
 
   return (
     <CollapseProvider>

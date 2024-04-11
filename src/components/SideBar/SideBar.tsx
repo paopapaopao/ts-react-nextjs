@@ -13,7 +13,7 @@ type Props = {
  */
 
 const SideBar = ({ children, className = '' }: Props): ReactNode => {
-  const classNames = clsx(
+  const classNames: string = clsx(
     'side-bar',
     styles['side-bar'],
     'sticky p-8 flex flex-col gap-8 border-r',

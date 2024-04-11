@@ -6,7 +6,7 @@ import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
-const USER_ID = 1;
+const USER_ID: number = 1;
 
 const UserPost = (): ReactNode => {
   const { postId } = useParams();

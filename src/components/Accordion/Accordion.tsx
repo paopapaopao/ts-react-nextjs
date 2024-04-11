@@ -26,7 +26,7 @@ const Accordion: AccordionComponent = ({
   children,
   className = ''
 }: Props): ReactNode => {
-  const classNames = clsx('accordion', 'flex flex-col', className);
+  const classNames: string = clsx('accordion', 'flex flex-col', className);
 
   return (
     <AccordionProvider>
