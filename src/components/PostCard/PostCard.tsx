@@ -50,7 +50,7 @@ const PostCard = ({
         {capitalizeFirstLetter(post?.body)}.
       </p>
       {comments.map((comment: Comment) => (
-        <div className="flex gap-4">
+        <div className="flex gap-4" key={comment.id}>
           <Image
             src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
             alt="Default profile photo"
