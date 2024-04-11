@@ -83,7 +83,7 @@ const UserPost = (): ReactNode => {
       ref={ref}
       className={classNames}
     >
-      <PostCard post={userPost} isLink={false} />
+      <PostCard post={userPost} />
     </dialog>
   );
 };

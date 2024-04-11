@@ -87,7 +87,7 @@ const Home = (): ReactNode => {
       </div>
       {hasFilteredPosts ? (
         filteredPosts.map((post: Post) => (
-          <PostCard post={post} key={post.id} />
+          <PostCard post={post} isLink key={post.id} />
         ))
       ) : (
         <h1 className="text-xl font-bold">

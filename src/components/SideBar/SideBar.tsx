@@ -12,7 +12,7 @@ type Props = {
  *  - Left Sidebar
  */
 
-const SideBar = ({ children, className }: Props): ReactNode => {
+const SideBar = ({ children, className = '' }: Props): ReactNode => {
   const classNames = clsx(
     'side-bar',
     styles['side-bar'],

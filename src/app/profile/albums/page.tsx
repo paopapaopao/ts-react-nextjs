@@ -57,7 +57,7 @@ const UserAlbums = (): ReactNode => {
           )}
         >
           <h4 className="text-lg font-bold text-black">
-            {capitalizeFirstLetter(userAlbum?.title ?? '')}
+            {capitalizeFirstLetter(userAlbum?.title)}
           </h4>
         </Link>
       ))}

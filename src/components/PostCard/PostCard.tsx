@@ -21,7 +21,7 @@ type Props = {
 const PostCard = ({
   className = '',
   comments,
-  isLink = true,
+  isLink = false,
   post
 }: Props): ReactNode => {
   const classNames = clsx(
@@ -35,19 +35,19 @@ const PostCard = ({
   return isLink ? (
     <Link href={`/posts/${post?.id}`} className={classNames}>
       <h4 className={clsx('text-lg font-bold', styles['title'])}>
-        {capitalizeFirstLetter(post?.title || '')}
+        {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base text-gray-800">
-        {capitalizeFirstLetter(post?.body || '')}.
+        {capitalizeFirstLetter(post?.body)}.
       </p>
     </Link>
   ) : (
     <div className={classNames}>
       <h4 className={clsx('text-lg font-bold')}>
-        {capitalizeFirstLetter(post?.title || '')}
+        {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base text-gray-800">
-        {capitalizeFirstLetter(post?.body || '')}.
+        {capitalizeFirstLetter(post?.body)}.
       </p>
       {comments.map((comment: Comment) => (
         <div className="flex gap-4">
@@ -61,7 +61,7 @@ const PostCard = ({
           <div className="flex flex-col gap-2">
             <h5 className="text-sm font-bold">{comment.email}</h5>
             <p className="text-sm text-gray-800">
-              {capitalizeFirstLetter(comment?.body || '')}.
+              {capitalizeFirstLetter(comment?.body)}.
             </p>
           </div>
         </div>

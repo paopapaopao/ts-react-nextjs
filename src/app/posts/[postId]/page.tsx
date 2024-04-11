@@ -43,7 +43,7 @@ const PostDetails = (): ReactNode => {
   return (
     <main className={classNames}>
       <h1 className="text-xl font-bold">Post {postId}</h1>
-      <PostCard post={post} isLink={false} />
+      <PostCard post={post} />
     </main>
   );
 };
