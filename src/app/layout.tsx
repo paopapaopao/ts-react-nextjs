@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import { Header, Modal, NavbarTop } from '@/components';
+import { Header, Modal, TopBar } from '@/components';
 import { ModalProvider } from '@/providers';
 import './globals.css';
 
@@ -23,7 +23,7 @@ const RootLayout = ({ children }: Props): ReactNode => {
         <ModalProvider>
           <Header>
             <Header.Center>
-              <NavbarTop />
+              <TopBar />
             </Header.Center>
           </Header>
           {children}

@@ -4,13 +4,14 @@ import clsx from 'clsx';
 import { useParams } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Post } from '@/types';
+import type { Comment, Post } from '@/types';
 import styles from './PostDetails.module.css';
 
 const PostDetails = (): ReactNode => {
   const { postId } = useParams();
 
   const [post, setPost] = useState<Post | null>(null);
+  const [postComments, setPostComments] = useState<Comment[]>([]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -34,6 +35,28 @@ const PostDetails = (): ReactNode => {
     fetchPost();
   }, []);
 
+  useEffect(() => {
+    const fetchPostComments = async () => {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+        );
+
+        if (!response.ok) {
+          throw new Error('An error occurred while getting post comments.');
+        }
+
+        const postComments = await response.json();
+
+        setPostComments(postComments);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPostComments();
+  }, []);
+
   const classNames: string = clsx(
     'post-details-page',
     styles['post-details-page'],
@@ -43,7 +66,7 @@ const PostDetails = (): ReactNode => {
   return (
     <main className={classNames}>
       <h1 className="text-xl font-bold">Post {postId}</h1>
-      <PostCard post={post} isLink={false} />
+      <PostCard post={post} comments={postComments} />
     </main>
   );
 };

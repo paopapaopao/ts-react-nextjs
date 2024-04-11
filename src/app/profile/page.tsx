@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { ReactNode, useEffect, useState } from 'react';
-import { type User } from '@/types';
+import type { User } from '@/types';
 import styles from './Profile.module.css';
 
 const USER_ID = 1;

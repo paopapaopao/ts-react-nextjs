@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Post } from '@/types';
+import type { Post } from '@/types';
 import styles from './App.module.css';
 
 /**
@@ -87,7 +87,7 @@ const Home = (): ReactNode => {
       </div>
       {hasFilteredPosts ? (
         filteredPosts.map((post: Post) => (
-          <PostCard post={post} key={post.id} />
+          <PostCard post={post} isLink key={post.id} />
         ))
       ) : (
         <h1 className="text-xl font-bold">

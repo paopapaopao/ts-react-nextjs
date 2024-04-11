@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
 import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Post } from '@/types';
+import type { Comment, Post } from '@/types';
 
 const USER_ID = 1;
 
@@ -13,6 +13,7 @@ const UserPost = (): ReactNode => {
   const { back } = useRouter();
 
   const [userPost, setUserPost] = useState<Post | null>(null);
+  const [postComments, setPostComments] = useState<Comment[]>([]);
   const ref = useRef<HTMLDialogElement>(null!);
 
   useEffect(() => {
@@ -35,6 +36,28 @@ const UserPost = (): ReactNode => {
     };
 
     fetchUserPost();
+  }, []);
+
+  useEffect(() => {
+    const fetchPostComments = async () => {
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+        );
+
+        if (!response.ok) {
+          throw new Error('An error occurred while getting post comments.');
+        }
+
+        const postComments = await response.json();
+
+        setPostComments(postComments);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPostComments();
   }, []);
 
   useEffect(() => {
@@ -83,7 +106,7 @@ const UserPost = (): ReactNode => {
       ref={ref}
       className={classNames}
     >
-      <PostCard post={userPost} isLink={false} />
+      <PostCard post={userPost} comments={postComments} />
     </dialog>
   );
 };

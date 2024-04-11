@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
-import { type Post } from '@/types';
+import type { Post } from '@/types';
 
 const USER_ID = 1;
 
@@ -46,7 +46,7 @@ const UserPosts = (): ReactNode => {
     <main className={classNames}>
       <h1 className="text-xl font-bold">Posts</h1>
       {userPosts.map((userPost: Post) => (
-        <PostCard post={userPost} key={userPost.id} />
+        <PostCard post={userPost} isLink key={userPost.id} />
       ))}
     </main>
   );

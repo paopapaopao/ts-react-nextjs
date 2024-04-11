@@ -20,7 +20,7 @@ type Props = {
 const Toggle = ({
   children,
   className = '',
-  isToggled,
+  isToggled = false,
   onClick = () => {}
 }: Props): ReactNode => {
   const { isOpen, close, toggle } = useCollapse();
