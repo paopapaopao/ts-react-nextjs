@@ -1,6 +1,6 @@
 import type { Todo } from '@/types';
 
-const getTodos = async (userId: number): Promise<Todo[]> => {
+const getUserTodos = async (userId: number): Promise<Todo[]> => {
   let todos: Todo[] = [];
 
   try {
@@ -20,4 +20,4 @@ const getTodos = async (userId: number): Promise<Todo[]> => {
   return todos;
 };
 
-export { getTodos };
+export { getUserTodos };

@@ -1,2 +1,2 @@
-export { getTodos } from './todo';
+export { getUserTodos } from './todo';
 export { getUser } from './user';
