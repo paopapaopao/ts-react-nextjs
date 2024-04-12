@@ -1,6 +1,6 @@
 import type { Album } from '@/types';
 
-const getUSerAlbums = async (userId: number): Promise<Album[]> => {
+const getUserAlbums = async (userId: number): Promise<Album[]> => {
   let userAlbums: Album[] = [];
 
   try {
@@ -20,4 +20,4 @@ const getUSerAlbums = async (userId: number): Promise<Album[]> => {
   return userAlbums;
 };
 
-export { getUSerAlbums };
+export { getUserAlbums };

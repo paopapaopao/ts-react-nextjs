@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { getUSerAlbums } from '@/api';
+import { getUserAlbums } from '@/api';
 import type { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
@@ -13,7 +13,7 @@ const USER_ID: number = 1;
  */
 
 const UserAlbums = async (): Promise<JSX.Element> => {
-  const userAlbums: Album[] = await getUSerAlbums(USER_ID);
+  const userAlbums: Album[] = await getUserAlbums(USER_ID);
 
   const classNames: string = clsx(
     'user-albums-page',

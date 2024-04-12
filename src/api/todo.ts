@@ -1,7 +1,7 @@
 import type { Todo } from '@/types';
 
 const getUserTodos = async (userId: number): Promise<Todo[]> => {
-  let todos: Todo[] = [];
+  let userTodos: Todo[] = [];
 
   try {
     const response = await fetch(
@@ -9,15 +9,15 @@ const getUserTodos = async (userId: number): Promise<Todo[]> => {
     );
 
     if (!response.ok) {
-      throw new Error('An error occurred while getting todos.');
+      throw new Error('An error occurred while getting user todos.');
     }
 
-    todos = await response.json();
+    userTodos = await response.json();
   } catch (error) {
     console.error(error);
   }
 
-  return todos;
+  return userTodos;
 };
 
 export { getUserTodos };
