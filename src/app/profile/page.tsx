@@ -1,37 +1,13 @@
-'use client';
-
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ReactNode, useEffect, useState } from 'react';
+import { getUser } from '@/api';
 import type { User } from '@/types';
 import styles from './Profile.module.css';
 
 const USER_ID: number = 1;
 
-const Profile = (): ReactNode => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}`
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user.');
-        }
-
-        const user = await response.json();
-
-        setUser(user);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUser();
-  }, []);
+const Profile = async (): Promise<JSX.Element> => {
+  const user: User | null = await getUser(USER_ID);
 
   const classNames: string = clsx(
     'profile-page',
@@ -62,7 +38,7 @@ const Profile = (): ReactNode => {
           {`${user?.address.suite}, ${user?.address.street}, ${user?.address.city}, ${user?.address.zipcode} (${user?.address.geo.lat}, ${user?.address.geo.lng})`}
         </span>
         <span className="font-bold">Website:</span>
-        <a href={`http://${user?.website}`} target="_blank">
+        <a href={`http://${user?.website}`} target="_blank" rel="noreferrer">
           {user?.website}
         </a>
         <span className="font-bold">Company:</span>
