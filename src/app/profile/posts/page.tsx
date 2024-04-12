@@ -1,7 +1,5 @@
-'use client';
-
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState } from 'react';
+import { getUserPosts } from '@/api';
 import { PostCard } from '@/components';
 import type { Post } from '@/types';
 
@@ -12,30 +10,8 @@ const USER_ID: number = 1;
  *  - Add search/filter
  */
 
-const UserPosts = (): ReactNode => {
-  const [userPosts, setUserPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchUserPosts = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts`
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user posts.');
-        }
-
-        const userPosts = await response.json();
-
-        setUserPosts(userPosts);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserPosts();
-  }, []);
+const UserPosts = async (): Promise<JSX.Element> => {
+  const userPosts: Post[] = await getUserPosts(USER_ID);
 
   const classNames: string = clsx(
     'user-posts-page',

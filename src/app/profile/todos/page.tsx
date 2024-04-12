@@ -1,36 +1,12 @@
-'use client';
-
 import clsx from 'clsx';
-import { ReactNode, useEffect, useState } from 'react';
+import { getUserTodos } from '@/api';
 import type { Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 const USER_ID: number = 1;
 
-const UserTodos = (): ReactNode => {
-  const [userTodos, setUserTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const fetchUserTodos = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}/todos`
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user todos.');
-        }
-
-        const userTodos = await response.json();
-
-        setUserTodos(userTodos);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserTodos();
-  }, []);
+const UserTodos = async (): Promise<JSX.Element> => {
+  const userTodos: Todo[] = await getUserTodos(USER_ID);
 
   const classNames: string = clsx(
     'user-todos-page',

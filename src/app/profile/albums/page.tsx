@@ -1,8 +1,6 @@
-'use client';
-
 import clsx from 'clsx';
 import Link from 'next/link';
-import { ReactNode, useEffect, useState } from 'react';
+import { getUserAlbums } from '@/api';
 import type { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
@@ -14,30 +12,8 @@ const USER_ID: number = 1;
  *  - Add search/filter
  */
 
-const UserAlbums = (): ReactNode => {
-  const [userAlbums, setUserAlbums] = useState<Album[]>([]);
-
-  useEffect(() => {
-    const fetchUserAlbums = async () => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}/albums`
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user albums.');
-        }
-
-        const userAlbums = await response.json();
-
-        setUserAlbums(userAlbums);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserAlbums();
-  }, []);
+const UserAlbums = async (): Promise<JSX.Element> => {
+  const userAlbums: Album[] = await getUserAlbums(USER_ID);
 
   const classNames: string = clsx(
     'user-albums-page',
