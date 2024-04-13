@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
@@ -17,9 +18,11 @@ type Props = {
 };
 
 const RootLayout = ({ children }: Props): ReactNode => {
+  const classNames: string = clsx(inter.className, 'bg-zinc-900 text-white');
+
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={classNames}>
         <ModalProvider>
           <Header>
             <Header.Center>

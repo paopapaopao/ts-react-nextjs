@@ -28,7 +28,7 @@ const PostCard = ({
     'post-card',
     styles['post-card'],
     isLink && styles['post-card-link'],
-    `px-8 py-4 flex flex-col gap-4 bg-white rounded-lg shadow-lg ${isLink && 'hover:shadow-xl'}`,
+    `px-8 py-4 flex flex-col gap-4 bg-zinc-800 rounded-lg shadow-lg ${isLink && 'hover:shadow-xl'} text-white`,
     className
   );
 
@@ -37,18 +37,14 @@ const PostCard = ({
       <h4 className={clsx('text-lg font-bold', styles['title'])}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
-      <p className="text-base text-gray-800">
-        {capitalizeFirstLetter(post?.body)}.
-      </p>
+      <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>
     </Link>
   ) : (
     <div className={classNames}>
       <h4 className={clsx('text-lg font-bold')}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
-      <p className="text-base text-gray-800">
-        {capitalizeFirstLetter(post?.body)}.
-      </p>
+      <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>
       {comments.map((comment: Comment) => (
         <div className="flex gap-4" key={comment.id}>
           <Image
@@ -60,9 +56,7 @@ const PostCard = ({
           />
           <div className="flex flex-col gap-2">
             <h5 className="text-sm font-bold">{comment.email}</h5>
-            <p className="text-sm text-gray-800">
-              {capitalizeFirstLetter(comment?.body)}.
-            </p>
+            <p className="text-sm">{capitalizeFirstLetter(comment?.body)}.</p>
           </div>
         </div>
       ))}

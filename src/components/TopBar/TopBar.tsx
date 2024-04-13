@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 const TopBar = (): ReactNode => {
   const classNames: string = clsx(
     'top-bar',
-    'flex-1 px-8 py-4 flex justify-evenly gap-4'
+    'flex-1 px-8 py-4 flex justify-evenly gap-4 bg-zinc-800'
   );
 
   return (
