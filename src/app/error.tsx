@@ -6,10 +6,10 @@ import { ReactNode } from 'react';
 import { Button } from '@/components';
 import styles from './App.module.css';
 
-type Props = {
+interface Props {
   error: Error;
   reset: () => void;
-};
+}
 
 const Error = ({ error, reset }: Props): ReactNode => {
   const { back, push } = useRouter();

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const RootLayout = ({ children }: Props): ReactNode => {
   const classNames: string = clsx(inter.className, 'bg-zinc-900 text-white');

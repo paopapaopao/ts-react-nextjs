@@ -3,9 +3,9 @@
 import { ReactNode, useState } from 'react';
 import AccordionContext from './AccordionContext';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const AccordionProvider = ({ children }: Props): ReactNode => {
   const [toggledItemIndex, setToggledItemIndex] = useState<number>(-1);

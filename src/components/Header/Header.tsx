@@ -4,10 +4,10 @@ import Center from './Center';
 import Left from './Left';
 import Right from './Right';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 interface HeaderComponent extends FC<Props> {
   Center: FC<Props>;

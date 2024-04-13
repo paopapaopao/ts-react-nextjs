@@ -3,9 +3,9 @@
 import { ReactNode, useState } from 'react';
 import CollapseContext from './CollapseContext';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const CollapseProvider = ({ children }: Props): ReactNode => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

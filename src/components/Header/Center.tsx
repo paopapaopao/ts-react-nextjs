@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 const Center = ({ children, className = '' }: Props): ReactNode => {
   const classNames: string = clsx('center', 'flex-1', className);

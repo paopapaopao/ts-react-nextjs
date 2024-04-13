@@ -6,12 +6,12 @@ import type { Comment, Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 
-type Props = {
+interface Props {
   className?: string;
   comments?: Comment[];
   isLink?: boolean;
   post: Post | null;
-};
+}
 
 /**
  * TODOs:

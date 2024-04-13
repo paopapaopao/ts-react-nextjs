@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useContext } from 'react';
 import AccordionContext from './AccordionContext';
 
-type Value = {
+interface Value {
   toggledItemIndex: number;
   setToggledItemIndex: Dispatch<SetStateAction<number>>;
-};
+}
 
 const useAccordion = (): Value => {
   const context = useContext<Value | null>(AccordionContext);

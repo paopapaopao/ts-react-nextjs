@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 import styles from './SideBar.module.css';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 /**
  * *NOTEs

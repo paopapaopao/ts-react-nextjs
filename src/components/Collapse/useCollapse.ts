@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import CollapseContext from './CollapseContext';
 
-type Value = {
+interface Value {
   isOpen: boolean;
   close: () => void;
   toggle: () => void;
-};
+}
 
 const useCollapse = (): Value => {
   const context = useContext<Value | null>(CollapseContext);

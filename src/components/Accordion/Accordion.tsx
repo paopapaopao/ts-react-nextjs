@@ -5,16 +5,16 @@ import Content from './Content';
 import Item from './Item';
 import Toggle from './Toggle';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
-type ToggleProps = {
+interface ToggleProps {
   children: ReactNode;
   className?: string;
   index: number;
-};
+}
 
 interface AccordionComponent extends FC<Props> {
   Content: FC<Props>;

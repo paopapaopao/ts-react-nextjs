@@ -3,18 +3,18 @@
 import { ReactNode, useReducer } from 'react';
 import { ModalContext } from '@/contexts';
 
-type State = {
+interface State {
   isOpen: boolean;
   content: ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
-};
+}
 
-type Payload = {
+interface Payload {
   content: ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
-};
+}
 
 type Action =
   | {
@@ -23,9 +23,9 @@ type Action =
     }
   | { type: 'CLOSE' };
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const initialState = {
   isOpen: false,
