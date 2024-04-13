@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { Button } from '..';
 import useCollapse from './useCollapse';
 

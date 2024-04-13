@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext } from 'react';
+import { type Dispatch, type SetStateAction, useContext } from 'react';
 import AccordionContext from './AccordionContext';
 
 interface Value {
