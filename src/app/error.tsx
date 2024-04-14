@@ -20,7 +20,9 @@ const Error = ({ error, reset }: Props): ReactNode => {
     'p-8 flex flex-col items-center gap-8'
   );
 
-  const handleClick = (): void => push('/');
+  const handleClick = (): void => {
+    push('/');
+  };
 
   return (
     <main className={classNames}>
