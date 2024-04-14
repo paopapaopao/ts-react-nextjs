@@ -20,7 +20,9 @@ const Modal = (): ReactNode => {
 
     dialogRef.addEventListener('close', handleClose);
 
-    return () => dialogRef.removeEventListener('close', handleClose);
+    return (): void => {
+      dialogRef.removeEventListener('close', handleClose);
+    };
   }, []);
 
   useEffect(() => {

@@ -10,8 +10,13 @@ interface Props {
 const CollapseProvider = ({ children }: Props): ReactNode => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const toggle = (): void => setIsOpen((isOpen) => !isOpen);
-  const close = (): void => setIsOpen(false);
+  const toggle = (): void => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
+  const close = (): void => {
+    setIsOpen(false);
+  };
 
   return (
     <CollapseContext.Provider value={{ isOpen, close, toggle }}>

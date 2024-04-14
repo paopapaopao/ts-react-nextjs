@@ -61,7 +61,9 @@ const AlbumPhoto = (): ReactNode => {
 
     dialogRef.addEventListener('close', back);
 
-    return (): void => dialogRef.removeEventListener('close', back);
+    return (): void => {
+      dialogRef.removeEventListener('close', back);
+    };
   }, []);
 
   useEffect(() => {
