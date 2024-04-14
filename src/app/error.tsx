@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Button } from '@/components';
 import styles from './App.module.css';
 

@@ -2,7 +2,13 @@
 
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
-import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 

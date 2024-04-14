@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useParams } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 import styles from './PostDetails.module.css';

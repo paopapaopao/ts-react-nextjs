@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { type ChangeEvent, type ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';

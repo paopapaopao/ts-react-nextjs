@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useReducer } from 'react';
+import { type ReactNode, useReducer } from 'react';
 import { ModalContext } from '@/contexts';
 
 interface State {

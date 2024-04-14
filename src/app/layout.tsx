@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Header, Modal, TopBar } from '@/components';
 import { ModalProvider } from '@/providers';
 import './globals.css';
