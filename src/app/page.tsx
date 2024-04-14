@@ -92,7 +92,9 @@ const Home = (): ReactNode => {
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}
-          <span className="text-blue-700">'{searchParams.get('query')}'</span>
+          <span className="text-blue-700">
+            &apos;{searchParams.get('query')}&apos;
+          </span>
         </h1>
       )}
     </main>
