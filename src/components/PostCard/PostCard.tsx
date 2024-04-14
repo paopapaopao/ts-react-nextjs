@@ -34,7 +34,7 @@ const PostCard = ({
 
   return isLink ? (
     <Link href={`/posts/${post?.id}`} className={classNames}>
-      <h4 className={clsx('text-lg font-bold', styles['title'])}>
+      <h4 className={clsx('text-lg font-bold', styles.title)}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>
