@@ -42,16 +42,16 @@ const Home = (): ReactNode => {
     fetchPosts();
   }, []);
 
-  // TODO: Remove ||
+  // TODO: Remove ??
   const filteredPosts: Post[] = posts.filter(
     (post: Post) =>
-      post.title.includes(searchParams.get('query') || '') ||
-      post.body.includes(searchParams.get('query') || '')
+      post.title.includes(searchParams.get('query') ?? '') ||
+      post.body.includes(searchParams.get('query') ?? '')
   );
 
   const hasFilteredPosts: boolean =
-    !searchParams.get('query') ||
-    (!!searchParams.get('query') && filteredPosts.length > 0);
+    searchParams.get('query') === null ||
+    (searchParams.get('query') !== null && filteredPosts.length > 0);
 
   const classNames: string = clsx(
     'home-page',

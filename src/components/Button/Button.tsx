@@ -22,7 +22,7 @@ const Button = ({ isLoading = false, ...rest }: Props): ReactNode => {
   return (
     <button
       className={classNames}
-      disabled={disabled || isLoading}
+      disabled={disabled ?? isLoading}
       {...restProps}
     >
       {isLoading ? 'Loading...' : children}
