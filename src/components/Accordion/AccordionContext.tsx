@@ -1,11 +1,11 @@
 'use client';
 
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { type Dispatch, type SetStateAction, createContext } from 'react';
 
-type Value = {
+interface Value {
   toggledItemIndex: number;
   setToggledItemIndex: Dispatch<SetStateAction<number>>;
-};
+}
 
 const AccordionContext = createContext<Value | null>(null);
 

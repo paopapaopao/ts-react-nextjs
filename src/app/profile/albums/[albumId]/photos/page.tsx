@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import type { Photo } from '@/types';
 
 /**
@@ -19,7 +19,7 @@ const AlbumPhotos = (): ReactNode => {
   const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {
-    const fetchAlbumPhotos = async () => {
+    const fetchAlbumPhotos = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
@@ -37,7 +37,7 @@ const AlbumPhotos = (): ReactNode => {
       }
     };
 
-    fetchAlbumPhotos();
+    void fetchAlbumPhotos();
   }, []);
 
   const classNames: string = clsx(

@@ -1,13 +1,13 @@
 import clsx from 'clsx';
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import Center from './Center';
 import Left from './Left';
 import Right from './Right';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 interface HeaderComponent extends FC<Props> {
   Center: FC<Props>;

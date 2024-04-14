@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { type ChangeEvent, type ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';
@@ -21,7 +21,7 @@ const Home = (): ReactNode => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPosts = async (): Promise<void> => {
       try {
         const response = await fetch(
           'https://jsonplaceholder.typicode.com/posts'
@@ -39,19 +39,19 @@ const Home = (): ReactNode => {
       }
     };
 
-    fetchPosts();
+    void fetchPosts();
   }, []);
 
-  // TODO: Remove ||
+  // TODO: Remove ??
   const filteredPosts: Post[] = posts.filter(
     (post: Post) =>
-      post.title.includes(searchParams.get('query') || '') ||
-      post.body.includes(searchParams.get('query') || '')
+      post.title.includes(searchParams.get('query') ?? '') ||
+      post.body.includes(searchParams.get('query') ?? '')
   );
 
   const hasFilteredPosts: boolean =
-    !searchParams.get('query') ||
-    (!!searchParams.get('query') && filteredPosts.length > 0);
+    searchParams.get('query') === null ||
+    (searchParams.get('query') !== null && filteredPosts.length > 0);
 
   const classNames: string = clsx(
     'home-page',
@@ -62,7 +62,7 @@ const Home = (): ReactNode => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const params: URLSearchParams = new URLSearchParams(searchParams);
 
-    if (event.target.value) {
+    if (event.target.value !== '') {
       params.set('query', event.target.value);
     } else {
       params.delete('query');
@@ -92,7 +92,9 @@ const Home = (): ReactNode => {
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}
-          <span className="text-blue-700">'{searchParams.get('query')}'</span>
+          <span className="text-blue-700">
+            &apos;{searchParams.get('query')}&apos;
+          </span>
         </h1>
       )}
     </main>

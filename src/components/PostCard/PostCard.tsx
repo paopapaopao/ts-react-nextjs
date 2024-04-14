@@ -1,17 +1,17 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import type { Comment, Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 
-type Props = {
+interface Props {
   className?: string;
   comments?: Comment[];
   isLink?: boolean;
   post: Post | null;
-};
+}
 
 /**
  * TODOs:
@@ -34,7 +34,7 @@ const PostCard = ({
 
   return isLink ? (
     <Link href={`/posts/${post?.id}`} className={classNames}>
-      <h4 className={clsx('text-lg font-bold', styles['title'])}>
+      <h4 className={clsx('text-lg font-bold', styles.title)}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>

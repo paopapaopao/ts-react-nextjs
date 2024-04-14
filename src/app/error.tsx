@@ -2,14 +2,14 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Button } from '@/components';
 import styles from './App.module.css';
 
-type Props = {
+interface Props {
   error: Error;
   reset: () => void;
-};
+}
 
 const Error = ({ error, reset }: Props): ReactNode => {
   const { back, push } = useRouter();
@@ -20,7 +20,9 @@ const Error = ({ error, reset }: Props): ReactNode => {
     'p-8 flex flex-col items-center gap-8'
   );
 
-  const handleClick = (): void => push('/');
+  const handleClick = (): void => {
+    push('/');
+  };
 
   return (
     <main className={classNames}>

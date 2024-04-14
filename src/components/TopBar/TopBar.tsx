@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 const TopBar = (): ReactNode => {
   const classNames: string = clsx(

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { ComponentProps, ReactNode } from 'react';
+import { type ComponentProps, type ReactNode } from 'react';
 
-type Props = ComponentProps<'button'> & {
+interface Props extends ComponentProps<'button'> {
   isLoading?: boolean;
-};
+}
 
 /**
  * TODOs:
@@ -22,7 +22,7 @@ const Button = ({ isLoading = false, ...rest }: Props): ReactNode => {
   return (
     <button
       className={classNames}
-      disabled={disabled || isLoading}
+      disabled={disabled ?? isLoading}
       {...restProps}
     >
       {isLoading ? 'Loading...' : children}

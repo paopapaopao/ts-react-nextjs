@@ -2,7 +2,13 @@
 
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
-import { MouseEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
@@ -17,7 +23,7 @@ const UserPost = (): ReactNode => {
   const ref = useRef<HTMLDialogElement>(null!);
 
   useEffect(() => {
-    const fetchUserPost = async () => {
+    const fetchUserPost = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts?id=${postId}`
@@ -35,11 +41,11 @@ const UserPost = (): ReactNode => {
       }
     };
 
-    fetchUserPost();
+    void fetchUserPost();
   }, []);
 
   useEffect(() => {
-    const fetchPostComments = async () => {
+    const fetchPostComments = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
@@ -57,7 +63,7 @@ const UserPost = (): ReactNode => {
       }
     };
 
-    fetchPostComments();
+    void fetchPostComments();
   }, []);
 
   useEffect(() => {
@@ -65,13 +71,15 @@ const UserPost = (): ReactNode => {
 
     dialogRef.addEventListener('close', back);
 
-    return (): void => dialogRef.removeEventListener('close', back);
+    return (): void => {
+      dialogRef.removeEventListener('close', back);
+    };
   }, []);
 
   useEffect(() => {
     const dialogRef: HTMLDialogElement = ref.current;
 
-    if (dialogRef) {
+    if (dialogRef !== null) {
       dialogRef.showModal();
     }
   }, [ref.current]);

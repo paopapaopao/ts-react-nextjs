@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-type Props = {
+interface Props {
   children: ReactNode;
   modal: ReactNode;
-};
+}
 
 const Layout = ({ children, modal }: Props): ReactNode => {
   return (

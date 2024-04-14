@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { ReactNode, useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import { useModal } from '@/hooks';
 import styles from './Modal.module.css';
 
@@ -20,7 +20,9 @@ const Modal = (): ReactNode => {
 
     dialogRef.addEventListener('close', handleClose);
 
-    return () => dialogRef.removeEventListener('close', handleClose);
+    return (): void => {
+      dialogRef.removeEventListener('close', handleClose);
+    };
   }, []);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const Modal = (): ReactNode => {
   const classNames: string = clsx(
     'modal',
     'min-h-fit p-4 rounded-2xl',
-    styles['modal']
+    styles.modal
   );
 
   return (

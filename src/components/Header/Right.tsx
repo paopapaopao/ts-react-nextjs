@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 const Right = ({ children, className = '' }: Props): ReactNode => {
   const classNames: string = clsx('right', className);

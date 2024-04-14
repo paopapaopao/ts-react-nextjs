@@ -1,20 +1,20 @@
 import clsx from 'clsx';
-import { FC, ReactNode } from 'react';
+import { type FC, type ReactNode } from 'react';
 import CollapseProvider from './CollapseProvider';
 import Content from './Content';
 import Toggle from './Toggle';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
-type ToggleProps = {
+interface ToggleProps {
   children: ReactNode;
   className?: string;
   isToggled?: boolean;
   onClick?: () => void;
-};
+}
 
 interface CollapseComponent extends FC<Props> {
   Content: FC<Props>;

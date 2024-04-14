@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Collapse } from '..';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 const Item = ({ children, className = '' }: Props): ReactNode => {
   return <Collapse className={className}>{children}</Collapse>;

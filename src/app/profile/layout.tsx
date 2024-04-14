@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { SideBar } from '@/components';
 import styles from './Profile.module.css';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 /**
  * TODOs:

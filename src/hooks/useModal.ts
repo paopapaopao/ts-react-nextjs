@@ -1,29 +1,29 @@
-import { ReactNode, useContext } from 'react';
+import { type ReactNode, useContext } from 'react';
 import { ModalContext } from '@/contexts';
 
-type State = {
+interface State {
   isOpen: boolean;
   content: ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
-};
+}
 
-type Payload = {
+interface Payload {
   content: ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
-};
+}
 
-type Value = {
+interface Value {
   state: State;
   open: (payload: Payload) => void;
   close: () => void;
-};
+}
 
 const useModal = (): Value => {
   const context = useContext<Value | null>(ModalContext);
 
-  if (!context) {
+  if (context === null) {
     throw new Error('useModal must be used within ModalProvider');
   }
 

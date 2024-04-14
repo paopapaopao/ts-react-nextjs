@@ -1,4 +1,4 @@
-type User = {
+interface User {
   address: {
     city: string;
     geo: {
@@ -20,6 +20,6 @@ type User = {
   phone: string;
   username: string;
   website: string;
-};
+}
 
 export default User;

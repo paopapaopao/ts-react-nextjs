@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { Header, Modal, TopBar } from '@/components';
 import { ModalProvider } from '@/providers';
 import './globals.css';
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ['latin'] });
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const RootLayout = ({ children }: Props): ReactNode => {
   const classNames: string = clsx(inter.className, 'bg-zinc-900 text-white');

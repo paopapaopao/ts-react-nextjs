@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import useCollapse from './useCollapse';
 
-type Props = {
+interface Props {
   children: ReactNode;
   className?: string;
-};
+}
 
 /**
  * TODOs:
