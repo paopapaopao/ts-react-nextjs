@@ -23,7 +23,7 @@ const UserPost = (): ReactNode => {
   const ref = useRef<HTMLDialogElement>(null!);
 
   useEffect(() => {
-    const fetchUserPost = async () => {
+    const fetchUserPost = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts?id=${postId}`
@@ -41,11 +41,11 @@ const UserPost = (): ReactNode => {
       }
     };
 
-    fetchUserPost();
+    void fetchUserPost();
   }, []);
 
   useEffect(() => {
-    const fetchPostComments = async () => {
+    const fetchPostComments = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
@@ -63,7 +63,7 @@ const UserPost = (): ReactNode => {
       }
     };
 
-    fetchPostComments();
+    void fetchPostComments();
   }, []);
 
   useEffect(() => {

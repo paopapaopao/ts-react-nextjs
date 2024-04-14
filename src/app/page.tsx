@@ -21,7 +21,7 @@ const Home = (): ReactNode => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPosts = async (): Promise<void> => {
       try {
         const response = await fetch(
           'https://jsonplaceholder.typicode.com/posts'
@@ -39,7 +39,7 @@ const Home = (): ReactNode => {
       }
     };
 
-    fetchPosts();
+    void fetchPosts();
   }, []);
 
   // TODO: Remove ??

@@ -35,7 +35,7 @@ const AlbumPhoto = (): ReactNode => {
   const ref = useRef<HTMLDialogElement>(null!);
 
   useEffect(() => {
-    const fetchAlbumPhoto = async () => {
+    const fetchAlbumPhoto = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&id=${photoId}`
@@ -53,7 +53,7 @@ const AlbumPhoto = (): ReactNode => {
       }
     };
 
-    fetchAlbumPhoto();
+    void fetchAlbumPhoto();
   }, []);
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const PostDetails = (): ReactNode => {
   const [postComments, setPostComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPost = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${postId}`
@@ -32,11 +32,11 @@ const PostDetails = (): ReactNode => {
       }
     };
 
-    fetchPost();
+    void fetchPost();
   }, []);
 
   useEffect(() => {
-    const fetchPostComments = async () => {
+    const fetchPostComments = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
@@ -54,7 +54,7 @@ const PostDetails = (): ReactNode => {
       }
     };
 
-    fetchPostComments();
+    void fetchPostComments();
   }, []);
 
   const classNames: string = clsx(

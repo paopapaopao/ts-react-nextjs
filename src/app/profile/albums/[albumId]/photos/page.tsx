@@ -19,7 +19,7 @@ const AlbumPhotos = (): ReactNode => {
   const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {
-    const fetchAlbumPhotos = async () => {
+    const fetchAlbumPhotos = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
@@ -37,7 +37,7 @@ const AlbumPhotos = (): ReactNode => {
       }
     };
 
-    fetchAlbumPhotos();
+    void fetchAlbumPhotos();
   }, []);
 
   const classNames: string = clsx(
