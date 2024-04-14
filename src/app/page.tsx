@@ -62,7 +62,7 @@ const Home = (): ReactNode => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const params: URLSearchParams = new URLSearchParams(searchParams);
 
-    if (event.target.value) {
+    if (event.target.value !== '') {
       params.set('query', event.target.value);
     } else {
       params.delete('query');

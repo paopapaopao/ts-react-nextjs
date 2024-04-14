@@ -9,7 +9,7 @@ interface Value {
 const useAccordion = (): Value => {
   const context = useContext<Value | null>(AccordionContext);
 
-  if (!context) {
+  if (context === null) {
     throw new Error('useAccordion must be used within AccordionProvider');
   }
 

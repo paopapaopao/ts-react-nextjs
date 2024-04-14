@@ -77,7 +77,7 @@ const UserPost = (): ReactNode => {
   useEffect(() => {
     const dialogRef: HTMLDialogElement = ref.current;
 
-    if (dialogRef) {
+    if (dialogRef !== null) {
       dialogRef.showModal();
     }
   }, [ref.current]);

@@ -10,7 +10,7 @@ interface Value {
 const useCollapse = (): Value => {
   const context = useContext<Value | null>(CollapseContext);
 
-  if (!context) {
+  if (context === null) {
     throw new Error('useCollapse must be used within CollapseProvider');
   }
 
