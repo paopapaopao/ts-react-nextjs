@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import { useSearchParams } from 'next/navigation';
 import { type ReactNode, useEffect, useState } from 'react';
 import { PostCard, SearchField } from '@/components';
 import type { Post } from '@/types';
@@ -13,9 +12,13 @@ import styles from './App.module.css';
  *  - Add debounce
  */
 
-const Home = (): ReactNode => {
-  const searchParams = useSearchParams();
+interface Props {
+  searchParams: {
+    query: string | undefined;
+  };
+}
 
+const Home = ({ searchParams: { query } }: Props): ReactNode => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -40,16 +43,16 @@ const Home = (): ReactNode => {
     void fetchPosts();
   }, []);
 
-  // TODO: Remove ??
-  const filteredPosts: Post[] = posts.filter(
-    (post: Post) =>
-      post.title.includes(searchParams.get('query') ?? '') ||
-      post.body.includes(searchParams.get('query') ?? '')
-  );
+  const filteredPosts: Post[] =
+    query !== undefined
+      ? posts.filter(
+          (post: Post) =>
+            post.title.includes(query) || post.body.includes(query)
+        )
+      : posts;
 
   const hasFilteredPosts: boolean =
-    searchParams.get('query') === null ||
-    (searchParams.get('query') !== null && filteredPosts.length > 0);
+    query === undefined || (query !== undefined && filteredPosts.length > 0);
 
   const classNames: string = clsx(
     'home-page',
@@ -72,9 +75,7 @@ const Home = (): ReactNode => {
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}
-          <span className="text-blue-700">
-            &apos;{searchParams.get('query')}&apos;
-          </span>
+          <span className="text-blue-700">&apos;{query}&apos;</span>
         </h1>
       )}
     </main>
