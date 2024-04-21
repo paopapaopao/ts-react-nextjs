@@ -1,9 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type ChangeEvent, type ReactNode, useEffect, useState } from 'react';
-import { PostCard } from '@/components';
+import { useSearchParams } from 'next/navigation';
+import { type ReactNode, useEffect, useState } from 'react';
+import { PostCard, SearchField } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';
 
@@ -15,8 +15,6 @@ import styles from './App.module.css';
 
 const Home = (): ReactNode => {
   const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
 
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -59,31 +57,13 @@ const Home = (): ReactNode => {
     'p-8 flex flex-col items-center gap-4'
   );
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const params: URLSearchParams = new URLSearchParams(searchParams);
-
-    if (event.target.value !== '') {
-      params.set('query', event.target.value);
-    } else {
-      params.delete('query');
-    }
-
-    replace(`${pathname}?${params.toString()}`);
-  };
-
   return (
     <main className={classNames}>
       <div className="flex gap-4">
         <label htmlFor="search" className="text-xl">
           Search posts
         </label>
-        <input
-          type="text"
-          defaultValue={searchParams.get('query')?.toString()}
-          id="search"
-          className="border"
-          onChange={handleChange}
-        />
+        <SearchField />
       </div>
       {hasFilteredPosts ? (
         filteredPosts.map((post: Post) => (

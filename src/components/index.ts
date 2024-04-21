@@ -4,5 +4,6 @@ export { Collapse } from './Collapse';
 export { Header } from './Header';
 export { Modal } from './Modal';
 export { PostCard } from './PostCard';
+export { SearchField } from './SearchField';
 export { SideBar } from './SideBar';
 export { TopBar } from './TopBar';
