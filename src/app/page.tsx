@@ -1,7 +1,5 @@
-'use client';
-
 import clsx from 'clsx';
-import { type ReactNode, useEffect, useState } from 'react';
+import { getPosts } from '@/api';
 import { PostCard, SearchField } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';
@@ -18,30 +16,10 @@ interface Props {
   };
 }
 
-const Home = ({ searchParams: { query } }: Props): ReactNode => {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchPosts = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/posts'
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting posts.');
-        }
-
-        const posts = await response.json();
-
-        setPosts(posts);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    void fetchPosts();
-  }, []);
+const Home = async ({
+  searchParams: { query }
+}: Props): Promise<JSX.Element> => {
+  const posts: Post[] = await getPosts();
 
   const filteredPosts: Post[] =
     query !== undefined
