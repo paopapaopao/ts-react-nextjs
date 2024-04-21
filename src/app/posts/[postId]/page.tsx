@@ -1,15 +1,18 @@
 'use client';
 
 import clsx from 'clsx';
-import { useParams } from 'next/navigation';
 import { type ReactNode, useEffect, useState } from 'react';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 import styles from './PostDetails.module.css';
 
-const PostDetails = (): ReactNode => {
-  const { postId } = useParams();
+interface Props {
+  params: {
+    postId: string;
+  };
+}
 
+const PostDetails = ({ params: { postId } }: Props): ReactNode => {
   const [post, setPost] = useState<Post | null>(null);
   const [postComments, setPostComments] = useState<Comment[]>([]);
 

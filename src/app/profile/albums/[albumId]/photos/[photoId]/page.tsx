@@ -2,7 +2,6 @@
 
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
 import { type ReactNode, useEffect, useState } from 'react';
 import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
@@ -12,9 +11,14 @@ import { capitalizeFirstLetter } from '@/utils';
  *  - Update photo type / default value
  */
 
-const AlbumPhoto = (): ReactNode => {
-  const { albumId, photoId } = useParams();
+interface Props {
+  params: {
+    albumId: string;
+    photoId: string;
+  };
+}
 
+const AlbumPhoto = ({ params: { albumId, photoId } }: Props): ReactNode => {
   const [albumPhoto, setAlbumPhoto] = useState<Photo>({
     albumId: -1,
     id: -1,

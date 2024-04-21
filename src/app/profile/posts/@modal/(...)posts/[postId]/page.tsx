@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
   type MouseEvent,
   type ReactNode,
@@ -12,10 +12,15 @@ import {
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
+interface Props {
+  params: {
+    postId: string;
+  };
+}
+
 const USER_ID: number = 1;
 
-const UserPost = (): ReactNode => {
-  const { postId } = useParams();
+const UserPost = ({ params: { postId } }: Props): ReactNode => {
   const { back } = useRouter();
 
   const [userPost, setUserPost] = useState<Post | null>(null);

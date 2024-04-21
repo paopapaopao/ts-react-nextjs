@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { type ReactNode, useEffect, useState } from 'react';
 import type { Photo } from '@/types';
 
@@ -13,9 +12,13 @@ import type { Photo } from '@/types';
  *  - Add search/filter
  */
 
-const AlbumPhotos = (): ReactNode => {
-  const { albumId } = useParams();
+interface Props {
+  params: {
+    albumId: string;
+  };
+}
 
+const AlbumPhotos = ({ params: { albumId } }: Props): ReactNode => {
   const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {

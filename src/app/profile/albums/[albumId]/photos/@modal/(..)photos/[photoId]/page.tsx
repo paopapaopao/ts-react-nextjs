@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
   type MouseEvent,
   type ReactNode,
@@ -21,8 +21,14 @@ import { capitalizeFirstLetter } from '@/utils';
  *  - Check null!
  */
 
-const AlbumPhoto = (): ReactNode => {
-  const { albumId, photoId } = useParams();
+interface Props {
+  params: {
+    albumId: string;
+    photoId: string;
+  };
+}
+
+const AlbumPhoto = ({ params: { albumId, photoId } }: Props): ReactNode => {
   const { back } = useRouter();
 
   const [albumPhoto, setAlbumPhoto] = useState<Photo>({
