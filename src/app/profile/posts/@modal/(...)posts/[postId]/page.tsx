@@ -9,7 +9,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { getUserPost } from '@/api';
+import { getUserPost, getUserPostComments } from '@/api';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
@@ -40,21 +40,9 @@ const UserPost = ({ params: { postId } }: Props): ReactNode => {
 
   useEffect(() => {
     const fetchPostComments = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-        );
+      const postComments: Comment[] = await getUserPostComments(postId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting post comments.');
-        }
-
-        const postComments = await response.json();
-
-        setPostComments(postComments);
-      } catch (error) {
-        console.error(error);
-      }
+      setPostComments(postComments);
     };
 
     void fetchPostComments();
