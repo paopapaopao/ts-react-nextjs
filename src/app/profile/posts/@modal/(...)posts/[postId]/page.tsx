@@ -9,6 +9,7 @@ import {
   useRef,
   useState
 } from 'react';
+import { getUserPost } from '@/api';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
@@ -29,21 +30,9 @@ const UserPost = ({ params: { postId } }: Props): ReactNode => {
 
   useEffect(() => {
     const fetchUserPost = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts?id=${postId}`
-        );
+      const userPost: Post = await getUserPost(USER_ID, postId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user post.');
-        }
-
-        const userPost = await response.json();
-
-        setUserPost(userPost[0]);
-      } catch (error) {
-        console.error(error);
-      }
+      setUserPost(userPost);
     };
 
     void fetchUserPost();
