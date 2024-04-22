@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import { getAlbumPhoto } from '@/api';
+import { getAlbumPhoto } from '@/apis';
 import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 

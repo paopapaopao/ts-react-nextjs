@@ -10,7 +10,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { getAlbumPhoto } from '@/api';
+import { getAlbumPhoto } from '@/apis';
 import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 

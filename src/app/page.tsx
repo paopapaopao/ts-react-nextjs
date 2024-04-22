@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getPosts } from '@/api';
+import { getPosts } from '@/apis';
 import { PostCard, SearchField } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';

@@ -9,7 +9,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { getUserPost, getUserPostComments } from '@/api';
+import { getUserPost, getUserPostComments } from '@/apis';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import { getUserAlbums } from '@/api';
+import { getUserAlbums } from '@/apis';
 import type { Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
