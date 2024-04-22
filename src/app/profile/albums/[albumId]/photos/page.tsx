@@ -1,10 +1,7 @@
-'use client';
-
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import { type ReactNode, useEffect, useState } from 'react';
+import { getAlbumPhotos } from '@/api';
 import type { Photo } from '@/types';
 
 /**
@@ -13,32 +10,16 @@ import type { Photo } from '@/types';
  *  - Add search/filter
  */
 
-const AlbumPhotos = (): ReactNode => {
-  const { albumId } = useParams();
+interface Props {
+  params: {
+    albumId: string;
+  };
+}
 
-  const [albumPhotos, setAlbumPhotos] = useState<Photo[]>([]);
-
-  useEffect(() => {
-    const fetchAlbumPhotos = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting album photos.');
-        }
-
-        const albumPhotos = await response.json();
-
-        setAlbumPhotos(albumPhotos);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    void fetchAlbumPhotos();
-  }, []);
+const AlbumPhotos = async ({
+  params: { albumId }
+}: Props): Promise<JSX.Element> => {
+  const albumPhotos: Photo[] = await getAlbumPhotos(albumId);
 
   const classNames: string = clsx(
     'album-photos-page',

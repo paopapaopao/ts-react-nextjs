@@ -1,9 +1,6 @@
-'use client';
-
 import clsx from 'clsx';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type ChangeEvent, type ReactNode, useEffect, useState } from 'react';
-import { PostCard } from '@/components';
+import { getPosts } from '@/api';
+import { PostCard, SearchField } from '@/components';
 import type { Post } from '@/types';
 import styles from './App.module.css';
 
@@ -13,45 +10,27 @@ import styles from './App.module.css';
  *  - Add debounce
  */
 
-const Home = (): ReactNode => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+interface Props {
+  searchParams: {
+    query: string | undefined;
+  };
+}
 
-  const [posts, setPosts] = useState<Post[]>([]);
+const Home = async ({
+  searchParams: { query }
+}: Props): Promise<JSX.Element> => {
+  const posts: Post[] = await getPosts();
 
-  useEffect(() => {
-    const fetchPosts = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          'https://jsonplaceholder.typicode.com/posts'
-        );
-
-        if (!response.ok) {
-          throw new Error('An error occurred while getting posts.');
-        }
-
-        const posts = await response.json();
-
-        setPosts(posts);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    void fetchPosts();
-  }, []);
-
-  // TODO: Remove ??
-  const filteredPosts: Post[] = posts.filter(
-    (post: Post) =>
-      post.title.includes(searchParams.get('query') ?? '') ||
-      post.body.includes(searchParams.get('query') ?? '')
-  );
+  const filteredPosts: Post[] =
+    query !== undefined
+      ? posts.filter(
+          (post: Post) =>
+            post.title.includes(query) || post.body.includes(query)
+        )
+      : posts;
 
   const hasFilteredPosts: boolean =
-    searchParams.get('query') === null ||
-    (searchParams.get('query') !== null && filteredPosts.length > 0);
+    query === undefined || (query !== undefined && filteredPosts.length > 0);
 
   const classNames: string = clsx(
     'home-page',
@@ -59,31 +38,13 @@ const Home = (): ReactNode => {
     'p-8 flex flex-col items-center gap-4'
   );
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const params: URLSearchParams = new URLSearchParams(searchParams);
-
-    if (event.target.value !== '') {
-      params.set('query', event.target.value);
-    } else {
-      params.delete('query');
-    }
-
-    replace(`${pathname}?${params.toString()}`);
-  };
-
   return (
     <main className={classNames}>
       <div className="flex gap-4">
         <label htmlFor="search" className="text-xl">
           Search posts
         </label>
-        <input
-          type="text"
-          defaultValue={searchParams.get('query')?.toString()}
-          id="search"
-          className="border"
-          onChange={handleChange}
-        />
+        <SearchField />
       </div>
       {hasFilteredPosts ? (
         filteredPosts.map((post: Post) => (
@@ -92,9 +53,7 @@ const Home = (): ReactNode => {
       ) : (
         <h1 className="text-xl font-bold">
           No posts with the search query{' '}
-          <span className="text-blue-700">
-            &apos;{searchParams.get('query')}&apos;
-          </span>
+          <span className="text-blue-700">&apos;{query}&apos;</span>
         </h1>
       )}
     </main>

@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
   type MouseEvent,
   type ReactNode,
@@ -9,13 +9,19 @@ import {
   useRef,
   useState
 } from 'react';
+import { getUserPost, getUserPostComments } from '@/api';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 
+interface Props {
+  params: {
+    postId: string;
+  };
+}
+
 const USER_ID: number = 1;
 
-const UserPost = (): ReactNode => {
-  const { postId } = useParams();
+const UserPost = ({ params: { postId } }: Props): ReactNode => {
   const { back } = useRouter();
 
   const [userPost, setUserPost] = useState<Post | null>(null);
@@ -24,21 +30,9 @@ const UserPost = (): ReactNode => {
 
   useEffect(() => {
     const fetchUserPost = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${USER_ID}/posts?id=${postId}`
-        );
+      const userPost: Post = await getUserPost(USER_ID, postId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting user post.');
-        }
-
-        const userPost = await response.json();
-
-        setUserPost(userPost[0]);
-      } catch (error) {
-        console.error(error);
-      }
+      setUserPost(userPost);
     };
 
     void fetchUserPost();
@@ -46,21 +40,9 @@ const UserPost = (): ReactNode => {
 
   useEffect(() => {
     const fetchPostComments = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-        );
+      const postComments: Comment[] = await getUserPostComments(postId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting post comments.');
-        }
-
-        const postComments = await response.json();
-
-        setPostComments(postComments);
-      } catch (error) {
-        console.error(error);
-      }
+      setPostComments(postComments);
     };
 
     void fetchPostComments();
