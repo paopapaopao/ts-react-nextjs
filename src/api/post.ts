@@ -58,4 +58,36 @@ const getUserPosts = async (userId: number): Promise<Post[]> => {
   return userPosts;
 };
 
-export { getPosts, getPost, getUserPosts };
+/**
+ * TODOs:
+ *  - Update post type / default value
+ */
+
+const getUserPost = async (userId: number, postId: string): Promise<Post> => {
+  let userPost: Post[] = [
+    {
+      body: '',
+      id: -1,
+      title: '',
+      userId: -1
+    }
+  ];
+
+  try {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${userId}/posts?id=${postId}`
+    );
+
+    if (!response.ok) {
+      throw new Error('An error occurred while getting user post.');
+    }
+
+    userPost = await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+
+  return userPost[0];
+};
+
+export { getPosts, getPost, getUserPosts, getUserPost };
