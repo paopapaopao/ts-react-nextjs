@@ -2,6 +2,7 @@
 
 import clsx from 'clsx';
 import { type ReactNode, useEffect, useState } from 'react';
+import { getPost } from '@/api';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 import styles from './PostDetails.module.css';
@@ -18,21 +19,9 @@ const PostDetails = ({ params: { postId } }: Props): ReactNode => {
 
   useEffect(() => {
     const fetchPost = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${postId}`
-        );
+      const post: Post | null = await getPost(postId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting post.');
-        }
-
-        const post = await response.json();
-
-        setPost(post);
-      } catch (error) {
-        console.error(error);
-      }
+      setPost(post);
     };
 
     void fetchPost();
