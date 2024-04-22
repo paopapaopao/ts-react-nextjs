@@ -1,25 +1,12 @@
-'use client';
-
-import clsx from 'clsx';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import {
-  type MouseEvent,
-  type ReactNode,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
-import { getAlbumPhoto } from '@/api';
+import { getAlbumPhoto } from '@/apis';
+import { Dialog } from '@/components';
 import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 /**
  * TODOs:
- *  - Update photo type / default value
- *  - Add close button
  *  - Stop background automatic scroll when opening/closing modal
- *  - Check null!
  */
 
 interface Props {
@@ -29,76 +16,13 @@ interface Props {
   };
 }
 
-const AlbumPhoto = ({ params: { albumId, photoId } }: Props): ReactNode => {
-  const { back } = useRouter();
-
-  const [albumPhoto, setAlbumPhoto] = useState<Photo>({
-    albumId: -1,
-    id: -1,
-    thumbnailUrl: '',
-    title: '',
-    url: ''
-  });
-  const ref = useRef<HTMLDialogElement>(null!);
-
-  useEffect(() => {
-    const fetchAlbumPhoto = async (): Promise<void> => {
-      const albumPhoto: Photo = await getAlbumPhoto(albumId, photoId);
-
-      setAlbumPhoto(albumPhoto);
-    };
-
-    void fetchAlbumPhoto();
-  }, []);
-
-  useEffect(() => {
-    const dialogRef: HTMLDialogElement = ref.current;
-
-    dialogRef.addEventListener('close', back);
-
-    return (): void => {
-      dialogRef.removeEventListener('close', back);
-    };
-  }, []);
-
-  useEffect(() => {
-    const dialogRef: HTMLDialogElement = ref.current;
-
-    if (dialogRef !== null) {
-      dialogRef.showModal();
-    }
-  }, [ref.current]);
-
-  const classNames: string = clsx(
-    'album-photo-modal',
-    'p-8 flex flex-col items-center gap-4 rounded-2xl'
-  );
-
-  const handleClick = (event: MouseEvent): void => {
-    const dialogDimensions = event.currentTarget.getBoundingClientRect();
-
-    if (
-      event.clientX < dialogDimensions.left ||
-      event.clientX > dialogDimensions.right ||
-      event.clientY < dialogDimensions.top ||
-      event.clientY > dialogDimensions.bottom
-    ) {
-      back();
-    }
-  };
+const AlbumPhoto = async ({
+  params: { albumId, photoId }
+}: Props): Promise<JSX.Element> => {
+  const albumPhoto: Photo = await getAlbumPhoto(albumId, photoId);
 
   return (
-    <dialog
-      onClick={handleClick}
-      onKeyDown={(event) => {
-        if (event.key === 'Escape') {
-          event.preventDefault();
-          back();
-        }
-      }}
-      ref={ref}
-      className={classNames}
-    >
+    <Dialog className="album-photo-modal">
       <Image
         src={albumPhoto.url}
         alt={albumPhoto.title}
@@ -107,7 +31,7 @@ const AlbumPhoto = ({ params: { albumId, photoId } }: Props): ReactNode => {
         className="flex justify-center items-center"
       />
       <i className="text-xl">{capitalizeFirstLetter(albumPhoto.title)}</i>
-    </dialog>
+    </Dialog>
   );
 };
 

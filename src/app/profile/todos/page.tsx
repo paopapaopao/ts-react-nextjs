@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getUserTodos } from '@/api';
+import { getUserTodos } from '@/apis';
 import type { Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 

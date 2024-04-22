@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import { getUser } from '@/api';
+import { getUser } from '@/apis';
 import type { User } from '@/types';
 import styles from './Profile.module.css';
 

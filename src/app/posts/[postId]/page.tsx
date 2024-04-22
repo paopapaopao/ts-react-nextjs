@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getPost, getPostComments } from '@/api';
+import { getPost, getPostComments } from '@/apis';
 import { PostCard } from '@/components';
 import type { Comment, Post } from '@/types';
 import styles from './PostDetails.module.css';
