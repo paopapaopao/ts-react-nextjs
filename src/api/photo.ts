@@ -1,5 +1,25 @@
 import { Photo } from '@/types';
 
+const getAlbumPhotos = async (albumId: string): Promise<Photo[]> => {
+  let albumPhotos: Photo[] = [];
+
+  try {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
+    );
+
+    if (!response.ok) {
+      throw new Error('An error occurred while getting album photos.');
+    }
+
+    albumPhotos = await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+
+  return albumPhotos;
+};
+
 /**
  * TODOs:
  *  - Update photo type / default value
@@ -36,4 +56,4 @@ const getAlbumPhoto = async (
   return albumPhoto[0];
 };
 
-export { getAlbumPhoto };
+export { getAlbumPhotos, getAlbumPhoto };
