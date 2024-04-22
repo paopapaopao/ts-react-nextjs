@@ -1,5 +1,10 @@
 import { Photo } from '@/types';
 
+/**
+ * TODOs:
+ *  - Update photo type / default value
+ */
+
 const getAlbumPhoto = async (
   albumId: string,
   photoId: string

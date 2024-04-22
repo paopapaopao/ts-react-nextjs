@@ -10,6 +10,7 @@ import {
   useRef,
   useState
 } from 'react';
+import { getAlbumPhoto } from '@/api';
 import type { Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
@@ -42,21 +43,9 @@ const AlbumPhoto = ({ params: { albumId, photoId } }: Props): ReactNode => {
 
   useEffect(() => {
     const fetchAlbumPhoto = async (): Promise<void> => {
-      try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}&id=${photoId}`
-        );
+      const albumPhoto: Photo = await getAlbumPhoto(albumId, photoId);
 
-        if (!response.ok) {
-          throw new Error('An error occurred while getting album photo.');
-        }
-
-        const albumPhoto = await response.json();
-
-        setAlbumPhoto(albumPhoto[0]);
-      } catch (error) {
-        console.error(error);
-      }
+      setAlbumPhoto(albumPhoto);
     };
 
     void fetchAlbumPhoto();
