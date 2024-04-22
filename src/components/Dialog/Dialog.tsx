@@ -2,11 +2,18 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { type MouseEvent, type ReactNode, useRef, useEffect } from 'react';
+import { type MouseEvent, type ReactNode, useEffect, useRef } from 'react';
+
+/**
+ * TODOs:
+ *  - Add close button
+ *  - Stop background automatic scroll when opening/closing modal
+ *  - Check null!
+ */
 
 interface Props {
   children: ReactNode;
-  className: string;
+  className?: string;
 }
 
 const Dialog = ({ children, className }: Props): ReactNode => {
