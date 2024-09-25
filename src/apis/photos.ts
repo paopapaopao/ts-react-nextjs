@@ -1,6 +1,6 @@
-import { Photo } from '@/types';
+import { type Photo } from '@/types';
 
-const getAlbumPhotos = async (albumId: string): Promise<Photo[]> => {
+const getAlbumPhotos = async (albumId: number | string): Promise<Photo[]> => {
   let albumPhotos: Photo[] = [];
 
   try {
@@ -26,8 +26,8 @@ const getAlbumPhotos = async (albumId: string): Promise<Photo[]> => {
  */
 
 const getAlbumPhoto = async (
-  albumId: string,
-  photoId: string
+  albumId: number | string,
+  photoId: number | string
 ): Promise<Photo> => {
   let albumPhoto: Photo[] = [
     {

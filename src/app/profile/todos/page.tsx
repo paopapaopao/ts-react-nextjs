@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import React from 'react';
 import { getUserTodos } from '@/apis';
-import type { Todo } from '@/types';
+import { type Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 const USER_ID: number = 1;
 
-const UserTodos = async (): Promise<JSX.Element> => {
+const Page = async (): Promise<JSX.Element> => {
   const userTodos: Todo[] = await getUserTodos(USER_ID);
 
   const classNames: string = clsx(
@@ -28,4 +29,4 @@ const UserTodos = async (): Promise<JSX.Element> => {
   );
 };
 
-export default UserTodos;
+export default Page;

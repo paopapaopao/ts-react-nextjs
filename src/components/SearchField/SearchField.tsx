@@ -1,11 +1,16 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type ChangeEvent, type ReactNode } from 'react';
+import {
+  type ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+  useSearchParams
+} from 'next/navigation';
+import React, { type ChangeEvent, type ReactNode } from 'react';
 
 const SearchField = (): ReactNode => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
+  const pathname: string = usePathname();
   const { replace } = useRouter();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {

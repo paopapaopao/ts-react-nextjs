@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import React from 'react';
 import { getAlbumPhoto } from '@/apis';
-import type { Photo } from '@/types';
+import { type Photo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   };
 }
 
-const AlbumPhoto = async ({
+const Page = async ({
   params: { albumId, photoId }
 }: Props): Promise<JSX.Element> => {
   const albumPhoto: Photo = await getAlbumPhoto(albumId, photoId);
@@ -38,4 +39,4 @@ const AlbumPhoto = async ({
   );
 };
 
-export default AlbumPhoto;
+export default Page;

@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { Button } from '@/components';
 import styles from './App.module.css';
 
@@ -14,15 +14,15 @@ interface Props {
 const Error = ({ error, reset }: Props): ReactNode => {
   const { back, push } = useRouter();
 
+  const handleClick = (): void => {
+    push('/');
+  };
+
   const classNames: string = clsx(
     'error-page',
     styles['error-page'],
     'p-8 flex flex-col items-center gap-8'
   );
-
-  const handleClick = (): void => {
-    push('/');
-  };
 
   return (
     <main className={classNames}>

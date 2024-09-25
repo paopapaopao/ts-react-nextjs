@@ -1,4 +1,4 @@
-import type { Post } from '@/types';
+import { type Post } from '@/types';
 
 const getPosts = async (): Promise<Post[]> => {
   let posts: Post[] = [];
@@ -18,7 +18,7 @@ const getPosts = async (): Promise<Post[]> => {
   return posts;
 };
 
-const getPost = async (postId: string): Promise<Post | null> => {
+const getPost = async (postId: number | string): Promise<Post | null> => {
   let post: Post | null = null;
 
   try {
@@ -38,7 +38,7 @@ const getPost = async (postId: string): Promise<Post | null> => {
   return post;
 };
 
-const getUserPosts = async (userId: number): Promise<Post[]> => {
+const getUserPosts = async (userId: number | string): Promise<Post[]> => {
   let userPosts: Post[] = [];
 
   try {
@@ -63,7 +63,7 @@ const getUserPosts = async (userId: number): Promise<Post[]> => {
  *  - Update post type / default value
  */
 
-const getUserPost = async (userId: number, postId: string): Promise<Post> => {
+const getUserPost = async (userId: number | string, postId: number | string): Promise<Post> => {
   let userPost: Post[] = [
     {
       body: '',

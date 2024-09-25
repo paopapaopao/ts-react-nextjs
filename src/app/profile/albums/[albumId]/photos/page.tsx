@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 import { getAlbumPhotos } from '@/apis';
-import type { Photo } from '@/types';
+import { type Photo } from '@/types';
 
 /**
  * TODOs:
@@ -16,9 +17,7 @@ interface Props {
   };
 }
 
-const AlbumPhotos = async ({
-  params: { albumId }
-}: Props): Promise<JSX.Element> => {
+const Page = async ({ params: { albumId } }: Props): Promise<JSX.Element> => {
   const albumPhotos: Photo[] = await getAlbumPhotos(albumId);
 
   const classNames: string = clsx(
@@ -49,4 +48,4 @@ const AlbumPhotos = async ({
   );
 };
 
-export default AlbumPhotos;
+export default Page;

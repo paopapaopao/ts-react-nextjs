@@ -2,7 +2,12 @@
 
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { type MouseEvent, type ReactNode, useEffect, useRef } from 'react';
+import React, {
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useRef
+} from 'react';
 
 /**
  * TODOs:
@@ -16,10 +21,10 @@ interface Props {
   className?: string;
 }
 
-const Dialog = ({ children, className }: Props): ReactNode => {
-  const { back } = useRouter();
-
+const Dialog = ({ children, className = '' }: Props): ReactNode => {
   const ref = useRef<HTMLDialogElement>(null!);
+
+  const { back } = useRouter();
 
   useEffect(() => {
     const dialogRef: HTMLDialogElement = ref.current;
@@ -39,12 +44,6 @@ const Dialog = ({ children, className }: Props): ReactNode => {
     }
   }, [ref.current]);
 
-  const classNames: string = clsx(
-    'dialog',
-    'p-8 flex flex-col items-center gap-4 rounded-2xl',
-    className
-  );
-
   const handleClick = (event: MouseEvent): void => {
     const dialogDimensions = event.currentTarget.getBoundingClientRect();
 
@@ -57,6 +56,12 @@ const Dialog = ({ children, className }: Props): ReactNode => {
       back();
     }
   };
+
+  const classNames: string = clsx(
+    'dialog',
+    'p-8 flex flex-col items-center gap-4 rounded-2xl',
+    className
+  );
 
   return (
     <dialog

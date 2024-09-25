@@ -1,7 +1,8 @@
 import clsx from 'clsx';
+import React from 'react';
 import { getPost, getPostComments } from '@/apis';
 import { PostCard } from '@/components';
-import type { Comment, Post } from '@/types';
+import { type Comment, type Post } from '@/types';
 import styles from './PostDetails.module.css';
 
 interface Props {
@@ -10,9 +11,7 @@ interface Props {
   };
 }
 
-const PostDetails = async ({
-  params: { postId }
-}: Props): Promise<JSX.Element> => {
+const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
   const post: Post | null = await getPost(postId);
   const postComments: Comment[] = await getPostComments(postId);
 
@@ -30,4 +29,4 @@ const PostDetails = async ({
   );
 };
 
-export default PostDetails;
+export default Page;

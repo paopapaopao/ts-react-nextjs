@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { type ReactNode, useEffect } from 'react';
+import React, { type ReactNode, useEffect } from 'react';
 import { Button } from '..';
 import useCollapse from './useCollapse';
 
@@ -31,12 +31,12 @@ const Toggle = ({
     }
   }, [isToggled]);
 
-  const classNames: string = clsx('toggle', className);
-
   const handleClick = (): void => {
     toggle();
     onClick();
   };
+
+  const classNames: string = clsx('toggle', className);
 
   return (
     <Button onClick={handleClick} className={classNames}>

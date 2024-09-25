@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import Link from 'next/link';
+import React from 'react';
 import { getUserAlbums } from '@/apis';
-import type { Album } from '@/types';
+import { type Album } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './UserAlbums.module.css';
 
@@ -12,7 +13,7 @@ const USER_ID: number = 1;
  *  - Add search/filter
  */
 
-const UserAlbums = async (): Promise<JSX.Element> => {
+const Page = async (): Promise<JSX.Element> => {
   const userAlbums: Album[] = await getUserAlbums(USER_ID);
 
   const classNames: string = clsx(
@@ -41,4 +42,4 @@ const UserAlbums = async (): Promise<JSX.Element> => {
   );
 };
 
-export default UserAlbums;
+export default Page;

@@ -1,6 +1,6 @@
-import type { Album } from '@/types';
+import { type Album } from '@/types';
 
-const getUserAlbums = async (userId: number): Promise<Album[]> => {
+const getUserAlbums = async (userId: number | string): Promise<Album[]> => {
   let userAlbums: Album[] = [];
 
   try {
