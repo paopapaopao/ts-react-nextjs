@@ -1,6 +1,6 @@
-import type { User } from '@/types';
+import { type User } from '@/types';
 
-const getUser = async (userId: number): Promise<User | null> => {
+const getUser = async (userId: number | string): Promise<User | null> => {
   let user: User | null = null;
 
   try {

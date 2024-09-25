@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { type ReactNode } from 'react';
-import type { Comment, Post } from '@/types';
+import React, { type ReactNode } from 'react';
+import { type Comment, type Post } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 
@@ -28,7 +28,9 @@ const PostCard = ({
     'post-card',
     styles['post-card'],
     isLink && styles['post-card-link'],
-    `px-8 py-4 flex flex-col gap-4 bg-zinc-800 rounded-lg shadow-lg ${isLink && 'hover:shadow-xl'} text-white`,
+    `px-8 py-4 flex flex-col gap-4 bg-zinc-800 rounded-lg shadow-lg ${
+      isLink && 'hover:shadow-xl'
+    } text-white`,
     className
   );
 

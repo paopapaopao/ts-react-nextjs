@@ -1,6 +1,6 @@
-import type { Todo } from '@/types';
+import { type Todo } from '@/types';
 
-const getUserTodos = async (userId: number): Promise<Todo[]> => {
+const getUserTodos = async (userId: number | string): Promise<Todo[]> => {
   let userTodos: Todo[] = [];
 
   try {

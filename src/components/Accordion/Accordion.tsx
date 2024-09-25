@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type FC, type ReactNode } from 'react';
+import React, { type FC, type ReactNode } from 'react';
 import AccordionProvider from './AccordionProvider';
 import Content from './Content';
 import Item from './Item';

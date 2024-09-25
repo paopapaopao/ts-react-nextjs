@@ -1,6 +1,6 @@
-import type { Comment } from '@/types';
+import { type Comment } from '@/types';
 
-const getPostComments = async (postId: string): Promise<Comment[]> => {
+const getPostComments = async (postId: number | string): Promise<Comment[]> => {
   let postComments: Comment[] = [];
 
   try {
@@ -20,7 +20,7 @@ const getPostComments = async (postId: string): Promise<Comment[]> => {
   return postComments;
 };
 
-const getUserPostComments = async (postId: string): Promise<Comment[]> => {
+const getUserPostComments = async (postId: number | string): Promise<Comment[]> => {
   let userPostComments: Comment[] = [];
 
   try {
@@ -29,7 +29,7 @@ const getUserPostComments = async (postId: string): Promise<Comment[]> => {
     );
 
     if (!response.ok) {
-      throw new Error('An error occurred while getting post comments.');
+      throw new Error('An error occurred while getting user post comments.');
     }
 
     userPostComments = await response.json();

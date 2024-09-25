@@ -1,7 +1,8 @@
 import clsx from 'clsx';
+import React from 'react';
 import { getUserPosts } from '@/apis';
 import { PostCard } from '@/components';
-import type { Post } from '@/types';
+import { type Post } from '@/types';
 
 const USER_ID: number = 1;
 
@@ -10,7 +11,7 @@ const USER_ID: number = 1;
  *  - Add search/filter
  */
 
-const UserPosts = async (): Promise<JSX.Element> => {
+const Page = async (): Promise<JSX.Element> => {
   const userPosts: Post[] = await getUserPosts(USER_ID);
 
   const classNames: string = clsx(
@@ -28,4 +29,4 @@ const UserPosts = async (): Promise<JSX.Element> => {
   );
 };
 
-export default UserPosts;
+export default Page;

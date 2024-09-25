@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type ComponentProps, type ReactNode } from 'react';
+import React, { type ComponentProps, type ReactNode } from 'react';
 
 interface Props extends ComponentProps<'button'> {
   isLoading?: boolean;

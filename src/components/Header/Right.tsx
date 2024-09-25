@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;

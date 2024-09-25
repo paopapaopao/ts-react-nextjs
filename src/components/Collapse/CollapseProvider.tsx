@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useState } from 'react';
+import React, { type ReactNode, useState } from 'react';
 import CollapseContext from './CollapseContext';
 
 interface Props {

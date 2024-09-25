@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type FC, type ReactNode } from 'react';
+import React, { type FC, type ReactNode } from 'react';
 import Center from './Center';
 import Left from './Left';
 import Right from './Right';

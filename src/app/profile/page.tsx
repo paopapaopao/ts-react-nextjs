@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import React from 'react';
 import { getUser } from '@/apis';
-import type { User } from '@/types';
+import { type User } from '@/types';
 import styles from './Profile.module.css';
 
 const USER_ID: number = 1;
 
-const Profile = async (): Promise<JSX.Element> => {
+const Page = async (): Promise<JSX.Element> => {
   const user: User | null = await getUser(USER_ID);
 
   const classNames: string = clsx(
@@ -55,4 +56,4 @@ const Profile = async (): Promise<JSX.Element> => {
   );
 };
 
-export default Profile;
+export default Page;

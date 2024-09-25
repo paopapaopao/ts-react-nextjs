@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { type ReactNode, useEffect, useRef } from 'react';
+import React, { type ReactNode, useEffect, useRef } from 'react';
 import { useModal } from '@/hooks';
 import styles from './Modal.module.css';
 
