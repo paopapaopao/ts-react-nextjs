@@ -1,23 +1,5 @@
 import { type Post } from '@/types';
 
-const getPosts = async (): Promise<Post[]> => {
-  let posts: Post[] = [];
-
-  try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-
-    if (!response.ok) {
-      throw new Error('An error occurred while getting posts.');
-    }
-
-    posts = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-  return posts;
-};
-
 const getPost = async (postId: number | string): Promise<Post | null> => {
   let post: Post | null = null;
 
@@ -90,4 +72,4 @@ const getUserPost = async (userId: number | string, postId: number | string): Pr
   return userPost[0];
 };
 
-export { getPosts, getPost, getUserPosts, getUserPost };
+export { getPost, getUserPosts, getUserPost };

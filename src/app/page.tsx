@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import { getPosts } from '@/apis';
 import { PostCard, SearchField } from '@/components';
+import { prisma } from '@/lib';
 import { type Post } from '@/types';
 import styles from './App.module.css';
 
@@ -20,7 +20,7 @@ interface Props {
 const Page = async ({
   searchParams: { query }
 }: Props): Promise<JSX.Element> => {
-  const posts: Post[] = await getPosts();
+  const posts: Post[] = await prisma.post.findMany();
 
   const filteredPosts: Post[] =
     query !== undefined
