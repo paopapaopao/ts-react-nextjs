@@ -1,6 +1,6 @@
 interface Post {
-  body: string;
   id: string;
+  body: string;
   title: string;
 }
 

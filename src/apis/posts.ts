@@ -1,25 +1,5 @@
 import { type Post } from '@/types';
 
-const getUserPosts = async (userId: number | string): Promise<Post[]> => {
-  let userPosts: Post[] = [];
-
-  try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/users/${userId}/posts`
-    );
-
-    if (!response.ok) {
-      throw new Error('An error occurred while getting user posts.');
-    }
-
-    userPosts = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-  return userPosts;
-};
-
 /**
  * TODOs:
  *  - Update post type / default value
@@ -52,4 +32,4 @@ const getUserPost = async (userId: number | string, postId: number | string): Pr
   return userPost[0];
 };
 
-export { getUserPosts, getUserPost };
+export { getUserPost };

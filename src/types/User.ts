@@ -1,25 +1,13 @@
+import Post from "./Post";
+
 interface User {
-  address: {
-    city: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-    street: string;
-    suite: string;
-    zipcode: string;
-  };
-  company: {
-    bs: string;
-    catchPhrase: string;
-    name: string;
-  };
+  id: string;
   email: string;
-  id: number;
-  name: string;
-  phone: string;
+  firstName: string;
+  lastName: string;
+  password: string;
   username: string;
-  website: string;
+  posts: Post[];
 }
 
 export default User;

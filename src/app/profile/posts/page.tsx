@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import React from 'react';
-import { getUserPosts } from '@/apis';
 import { PostCard } from '@/components';
+import { prisma } from '@/lib';
 import { type Post } from '@/types';
 
-const USER_ID: number = 1;
+const USER_ID: string = 'cm246gpof0000pb5nyumjfd3g';
 
 /**
  * TODOs
@@ -12,7 +12,11 @@ const USER_ID: number = 1;
  */
 
 const Page = async (): Promise<JSX.Element> => {
-  const userPosts: Post[] = await getUserPosts(USER_ID);
+  const userPosts: Post[] = await prisma.post.findMany({
+    where: {
+      userId: USER_ID
+    }
+  });
 
   const classNames: string = clsx(
     'user-posts-page',
