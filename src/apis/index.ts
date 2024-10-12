@@ -1,5 +1,5 @@
 export { getUserAlbums } from './albums';
-export { getPostComments, getUserPostComments } from './comments';
+export { getUserPostComments } from './comments';
 export { getAlbumPhotos, getAlbumPhoto } from './photos';
 export { } from './posts';
 export { getUserTodos } from './todos';

@@ -1,8 +1,7 @@
 interface Comment {
-  body: string;
-  email: string;
   id: number;
-  name: string;
+  body: string;
+  userId: number;
   postId: number;
 }
 

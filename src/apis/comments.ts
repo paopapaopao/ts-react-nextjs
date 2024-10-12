@@ -1,25 +1,5 @@
 import { type Comment } from '@/types';
 
-const getPostComments = async (postId: number | string): Promise<Comment[]> => {
-  let postComments: Comment[] = [];
-
-  try {
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-    );
-
-    if (!response.ok) {
-      throw new Error('An error occurred while getting post comments.');
-    }
-
-    postComments = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-  return postComments;
-};
-
 const getUserPostComments = async (postId: number | string): Promise<Comment[]> => {
   let userPostComments: Comment[] = [];
 
@@ -40,4 +20,4 @@ const getUserPostComments = async (postId: number | string): Promise<Comment[]> 
   return userPostComments;
 };
 
-export { getPostComments, getUserPostComments };
+export { getUserPostComments };
