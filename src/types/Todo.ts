@@ -1,7 +1,7 @@
 interface Todo {
-  completed: boolean;
   id: number;
-  title: string;
+  completed: boolean;
+  todo: string;
   userId: number;
 }
 

@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { type Comment, type Post, type User } from '@/types';
+import { type Comment, type Post, type Todo, type User } from '@/types';
 
 const prisma = new PrismaClient();
 
@@ -22,6 +22,27 @@ const getUsers = async (): Promise<User[]> => {
   }
 
   return users;
+};
+
+const getTodos = async (): Promise<Todo[]> => {
+  let todos: Todo[] = [];
+
+  try {
+    const response = await fetch(
+      'https://dummyjson.com/todos?limit=0'
+    );
+
+    if (!response.ok) {
+      throw new Error('An error occurred while getting todos.');
+    }
+
+    const data = await response.json();
+    todos = data.todos;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return todos;
 };
 
 const getPosts = async (): Promise<Post[]> => {
@@ -70,10 +91,13 @@ async function main() {
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Comment';`;
   await prisma.$executeRaw`DELETE FROM Post;`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Post';`;
+  await prisma.$executeRaw`DELETE FROM Todo;`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Todo';`;
   await prisma.$executeRaw`DELETE FROM User;`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='User';`;
 
   const initialUsers: User[] = await getUsers();
+  const initialTodos: Todo[] = await getTodos();
   const initialPosts: Post[] = await getPosts();
   const initialComments = await getComments();
 
@@ -85,9 +109,27 @@ async function main() {
         lastName: user.lastName,
         password: user.password,
         username: user.username,
+        todos: {
+          create: []
+        },
         posts: {
           create: []
+        },
+        comments: {
+          create: []
         }
+      }
+    });
+  }
+
+  console.log('initialTodos', initialTodos)
+
+  for (const todo of initialTodos) {
+    await prisma.todo.create({
+      data: {
+        completed: todo.completed, 
+        todo: todo.todo,
+        userId: todo.userId
       }
     });
   }
@@ -97,7 +139,10 @@ async function main() {
       data: {
         body: post.body,
         title: post.title,
-        userId: post.userId
+        userId: post.userId,
+        comments: {
+          create: []
+        }
       }
     });
   }
