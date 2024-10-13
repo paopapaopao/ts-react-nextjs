@@ -24,27 +24,6 @@ const getUsers = async (): Promise<User[]> => {
   return users;
 };
 
-const getTodos = async (): Promise<Todo[]> => {
-  let todos: Todo[] = [];
-
-  try {
-    const response = await fetch(
-      'https://dummyjson.com/todos?limit=0'
-    );
-
-    if (!response.ok) {
-      throw new Error('An error occurred while getting todos.');
-    }
-
-    const data = await response.json();
-    todos = data.todos;
-  } catch (error) {
-    console.error(error);
-  }
-
-  return todos;
-};
-
 const getPosts = async (): Promise<Post[]> => {
   let posts: Post[] = [];
 
@@ -85,21 +64,42 @@ const getComments = async (): Promise<any[]> => {
   return comments;
 };
 
+const getTodos = async (): Promise<Todo[]> => {
+  let todos: Todo[] = [];
+
+  try {
+    const response = await fetch(
+      'https://dummyjson.com/todos?limit=0'
+    );
+
+    if (!response.ok) {
+      throw new Error('An error occurred while getting todos.');
+    }
+
+    const data = await response.json();
+    todos = data.todos;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return todos;
+};
+
 async function main() {
   // *Resets the id to 1
+  await prisma.$executeRaw`DELETE FROM Todo;`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Todo';`;
   await prisma.$executeRaw`DELETE FROM Comment;`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Comment';`;
   await prisma.$executeRaw`DELETE FROM Post;`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Post';`;
-  await prisma.$executeRaw`DELETE FROM Todo;`;
-  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='Todo';`;
   await prisma.$executeRaw`DELETE FROM User;`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='User';`;
 
   const initialUsers: User[] = await getUsers();
-  const initialTodos: Todo[] = await getTodos();
   const initialPosts: Post[] = await getPosts();
   const initialComments = await getComments();
+  const initialTodos: Todo[] = await getTodos();
 
   for (const user of initialUsers) {
     await prisma.user.create({
@@ -109,30 +109,19 @@ async function main() {
         lastName: user.lastName,
         password: user.password,
         username: user.username,
-        todos: {
-          create: []
-        },
         posts: {
           create: []
         },
         comments: {
+          create: []
+        },
+        todos: {
           create: []
         }
       }
     });
   }
 
-  console.log('initialTodos', initialTodos)
-
-  for (const todo of initialTodos) {
-    await prisma.todo.create({
-      data: {
-        completed: todo.completed, 
-        todo: todo.todo,
-        userId: todo.userId
-      }
-    });
-  }
 
   for (const post of initialPosts) {
     await prisma.post.create({
@@ -147,12 +136,24 @@ async function main() {
     });
   }
 
+
   for (const comment of initialComments) {
     await prisma.comment.create({
       data: {
         body: comment.body,
         userId: comment.user.id,
         postId: comment.postId
+      }
+    });
+  }
+
+
+  for (const todo of initialTodos) {
+    await prisma.todo.create({
+      data: {
+        completed: todo.completed, 
+        todo: todo.todo,
+        userId: todo.userId
       }
     });
   }

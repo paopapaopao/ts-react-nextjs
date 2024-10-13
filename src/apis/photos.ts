@@ -1,7 +1,5 @@
-import { type Photo } from '@/types';
-
-const getAlbumPhotos = async (albumId: number | string): Promise<Photo[]> => {
-  let albumPhotos: Photo[] = [];
+const getAlbumPhotos = async (albumId: number | string): Promise<any[]> => {
+  let albumPhotos = [];
 
   try {
     const response = await fetch(
@@ -28,8 +26,8 @@ const getAlbumPhotos = async (albumId: number | string): Promise<Photo[]> => {
 const getAlbumPhoto = async (
   albumId: number | string,
   photoId: number | string
-): Promise<Photo> => {
-  let albumPhoto: Photo[] = [
+): Promise<any> => {
+  let albumPhoto = [
     {
       albumId: -1,
       id: -1,
