@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   images: {
-    domains: ['tr.rbxcdn.com', 'via.placeholder.com']
+    domains: ['tr.rbxcdn.com']
   }
 };
 

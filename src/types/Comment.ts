@@ -1,8 +1,14 @@
+import type Post from './Post';
+import type User from './User';
+
 interface Comment {
-  body: string;
-  email: string;
   id: number;
-  name: string;
+  body: string;
+  createdAt: Date;
+  updatedAt: Date;
+  user: User;
+  userId: number;
+  post: Post;
   postId: number;
 }
 

@@ -1,7 +1,12 @@
+import type User from './User';
+
 interface Todo {
-  completed: boolean;
   id: number;
-  title: string;
+  completed: boolean;
+  todo: string;
+  createdAt: Date;
+  updatedAt: Date;
+  user: User;
   userId: number;
 }
 

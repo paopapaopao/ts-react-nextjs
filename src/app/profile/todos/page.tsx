@@ -1,13 +1,17 @@
 import clsx from 'clsx';
 import React from 'react';
-import { getUserTodos } from '@/apis';
+import { prisma } from '@/lib';
 import { type Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 const USER_ID: number = 1;
 
 const Page = async (): Promise<JSX.Element> => {
-  const userTodos: Todo[] = await getUserTodos(USER_ID);
+  const userTodos: Todo[] = await prisma.todo.findMany({
+    where: {
+      userId: USER_ID
+    }
+  });
 
   const classNames: string = clsx(
     'user-todos-page',
@@ -21,7 +25,7 @@ const Page = async (): Promise<JSX.Element> => {
         <div key={userTodo.id} className="self-start flex gap-4">
           <input type="checkbox" checked={userTodo.completed} />
           <span className={userTodo.completed ? 'line-through' : ''}>
-            {capitalizeFirstLetter(userTodo.title)}
+            {capitalizeFirstLetter(userTodo.todo)}
           </span>
         </div>
       ))}

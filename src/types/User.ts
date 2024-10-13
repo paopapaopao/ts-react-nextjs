@@ -1,25 +1,19 @@
+import type Comment from './Comment';
+import type Post from './Post';
+import type Todo from './Todo';
+
 interface User {
-  address: {
-    city: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-    street: string;
-    suite: string;
-    zipcode: string;
-  };
-  company: {
-    bs: string;
-    catchPhrase: string;
-    name: string;
-  };
-  email: string;
   id: number;
-  name: string;
-  phone: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
   username: string;
-  website: string;
+  createdAt: Date;
+  updatedAt: Date;
+  posts: Post[];
+  comments: Comment[];
+  todos: Todo[];
 }
 
 export default User;
