@@ -53,4 +53,22 @@ const updatePost = async (payload: Prisma.PostUncheckedUpdateInput): Promise<Pri
   return response;
 }
 
-export { createPost, updatePost };
+const deletePost = async (id: number): Promise<PrismaPost | null> => {
+  let response: PrismaPost | null = null;
+
+  try {
+    response = await prisma.post.delete({
+      where: {
+        id: id as number
+      }
+    });
+
+    revalidatePath('/');
+  } catch (error) {
+    console.error(error);
+  }
+
+  return response;
+}
+
+export { createPost, updatePost, deletePost };
