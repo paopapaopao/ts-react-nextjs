@@ -1,5 +1,5 @@
 import { revalidatePath } from 'next/cache';
-import { Prisma, type Post as PrismaPost } from '@prisma/client';
+import { type Post as PrismaPost, Prisma} from '@prisma/client';
 import { prisma } from '@/lib';
 
 const createPost = async (payload: Prisma.PostUncheckedCreateInput): Promise<PrismaPost | null> => {
@@ -30,4 +30,27 @@ const createPost = async (payload: Prisma.PostUncheckedCreateInput): Promise<Pri
   return response;
 }
 
-export { createPost };
+const updatePost = async (payload: Prisma.PostUncheckedUpdateInput): Promise<PrismaPost | null> => {
+  const { id, body, title } = payload;
+  let response: PrismaPost | null = null;
+
+  try {
+    response = await prisma.post.update({
+      where: {
+        id: id as number
+      },
+      data: {
+        body,
+        title
+      }
+    });
+
+    revalidatePath('/');
+  } catch (error) {
+    console.error(error);
+  }
+
+  return response;
+}
+
+export { createPost, updatePost };
