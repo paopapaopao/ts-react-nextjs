@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
-import { PostCard, SearchField } from '@/components';
+import { type Post } from '@prisma/client';
+import { createPost } from '@/apis';
+import { PostCard, PostForm, SearchField } from '@/components';
 import { prisma } from '@/lib';
-import { type Post } from '@/types';
 import styles from './App.module.css';
 
 /**
@@ -20,7 +21,11 @@ interface Props {
 const Page = async ({
   searchParams: { query }
 }: Props): Promise<JSX.Element> => {
-  const posts: Post[] = await prisma.post.findMany();
+  const posts: Post[] = await prisma.post.findMany({
+    orderBy: {
+      createdAt: 'desc'
+    }
+  });
 
   const filteredPosts: Post[] =
     query !== undefined
@@ -33,6 +38,21 @@ const Page = async ({
   const hasFilteredPosts: boolean =
     query === undefined || (query !== undefined && filteredPosts.length > 0);
 
+  const createPostAction = async (formData: FormData): Promise<void> => {
+    'use server';
+
+    const title = formData.get('title');
+    const body = formData.get('body');
+
+    const data = {
+      title: title as string,
+      body: body as string,
+      userId: 1
+    };
+
+    await createPost(data);
+  };
+
   const classNames: string = clsx(
     'home-page',
     styles['home-page'],
@@ -41,6 +61,7 @@ const Page = async ({
 
   return (
     <main className={classNames}>
+      <PostForm action={createPostAction} />
       <div className="flex gap-4">
         <label htmlFor="search" className="text-xl">
           Search posts

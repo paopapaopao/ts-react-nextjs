@@ -4,7 +4,7 @@ import React, { type ReactNode } from 'react';
 import { Button } from '../Button';
 
 interface Props {
-  action: () => void;
+  action: (formData: FormData) => Promise<void>;
 }
 
 const PostForm = ({ action }: Props): ReactNode => {

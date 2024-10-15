@@ -39,14 +39,14 @@ const PostCard = ({
       <h4 className={clsx('text-lg font-bold', styles.title)}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
-      <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>
+      <p className="text-base">{capitalizeFirstLetter(post?.body)}</p>
     </Link>
   ) : (
     <div className={classNames}>
       <h4 className={clsx('text-lg font-bold')}>
         {capitalizeFirstLetter(post?.title)}
       </h4>
-      <p className="text-base">{capitalizeFirstLetter(post?.body)}.</p>
+      <p className="text-base">{capitalizeFirstLetter(post?.body)}</p>
       {comments.map((comment: Comment) => (
         <div className="flex gap-4" key={comment.id}>
           <Image
@@ -57,8 +57,8 @@ const PostCard = ({
             className={clsx(styles['profile-picture'], 'self-start')}
           />
           <div className="flex flex-col gap-2">
-            <h5 className="text-sm font-bold">{comment.email}</h5>
-            <p className="text-sm">{capitalizeFirstLetter(comment?.body)}.</p>
+            <h5 className="text-sm font-bold">{comment.user?.firstName}</h5>
+            <p className="text-sm">{capitalizeFirstLetter(comment?.body)}</p>
           </div>
         </div>
       ))}
