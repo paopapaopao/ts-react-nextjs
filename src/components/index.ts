@@ -5,6 +5,7 @@ export { Dialog } from './Dialog';
 export { Header } from './Header';
 export { Modal } from './Modal';
 export { PostCard } from './PostCard';
+export { PostForm } from './PostForm';
 export { SearchField } from './SearchField';
 export { SideBar } from './SideBar';
 export { TopBar } from './TopBar';
