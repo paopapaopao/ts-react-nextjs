@@ -12,7 +12,7 @@ interface User {
   createdAt: Date;
   updatedAt: Date;
   posts: Post[];
-  comments: Comment[];
+  comments: [];
   todos: Todo[];
 }
 

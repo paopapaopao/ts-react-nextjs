@@ -9,7 +9,7 @@ interface Post {
   updatedAt: Date;
   user: User;
   userId: number;
-  comments: Comment[];
+  comments: [];
 }
 
 export default Post;
