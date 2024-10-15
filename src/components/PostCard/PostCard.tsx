@@ -2,7 +2,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { type ReactNode } from 'react';
-import { type Comment, type Post } from '@/types';
+import { type Post } from '@prisma/client';
+import { type Comment } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 
