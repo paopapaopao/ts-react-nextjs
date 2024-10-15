@@ -1,4 +1,4 @@
 export {  } from './comments';
-export { } from './posts';
+export { createPost } from './posts';
 export {  } from './todos';
 export { getUser } from './users';
