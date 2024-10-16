@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { type ReactNode } from 'react';
-import { type Post } from '@prisma/client';
-import { type Comment } from '@/types';
+import { type Comment, type Post } from '@prisma/client';
+// import { type Comment } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 import styles from './PostCard.module.css';
 
@@ -48,7 +48,7 @@ const PostCard = ({
         {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base">{capitalizeFirstLetter(post?.body)}</p>
-      {comments.map((comment) => (
+      {comments.map((comment: Comment) => (
         <div className="flex gap-4" key={comment.id}>
           <Image
             src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
@@ -58,7 +58,7 @@ const PostCard = ({
             className={clsx(styles['profile-picture'], 'self-start')}
           />
           <div className="flex flex-col gap-2">
-            <h5 className="text-sm font-bold">{comment.user?.firstName}</h5>
+            {/* <h5 className="text-sm font-bold">{comment.user?.firstName}</h5> */}
             <p className="text-sm">{capitalizeFirstLetter(comment?.body)}</p>
           </div>
         </div>
