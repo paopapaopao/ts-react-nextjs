@@ -1,3 +1,3 @@
-import { type Comment } from '@/types';
+// import { type Comment } from '@/types';
 
 export {  };
