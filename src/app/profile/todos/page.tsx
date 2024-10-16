@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { prisma } from '@/lib';
-import { type Todo } from '@/types';
+// import { type Todo } from '@/types';
 import { capitalizeFirstLetter } from '@/utils';
 
 const USER_ID: number = 1;

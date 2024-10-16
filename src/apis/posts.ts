@@ -1,5 +1,5 @@
 import { revalidatePath } from 'next/cache';
-import { type Post as PrismaPost, Prisma} from '@prisma/client';
+import type { Post as PrismaPost, Prisma} from '@prisma/client';
 import { prisma } from '@/lib';
 
 const createPost = async (payload: Prisma.PostUncheckedCreateInput): Promise<PrismaPost | null> => {

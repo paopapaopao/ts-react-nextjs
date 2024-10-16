@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import React from 'react';
-import { type Post } from '@prisma/client';
-import { readPost, updatePost } from '@/apis';
-import { PostCard, PostForm } from '@/components';
-import { prisma } from '@/lib';
-import { type Comment } from '@/types';
+// import { type Post } from '@prisma/client';
+import { updatePost } from '@/apis';
+import { PostForm } from '@/components';
+// import { prisma } from '@/lib';
+// import { type Comment } from '@/types';
 import styles from './PostDetails.module.css';
 
 interface Props {
@@ -14,12 +14,12 @@ interface Props {
 }
 
 const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
-  const post: Post | null = await readPost(parseInt(postId));
-  const postComments = await prisma.comment.findMany({
-    where: {
-      postId: parseInt(postId)
-    }
-  });
+  // const post: Post | null = await readPost(parseInt(postId));
+  // const postComments = await prisma.comment.findMany({
+  //   where: {
+  //     postId: parseInt(postId)
+  //   }
+  // });
 
   const updatePostAction = async (formData: FormData): Promise<void> => {
     'use server';
