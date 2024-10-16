@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
 import { type Post } from '@prisma/client';
-import { createPost } from '@/apis';
+import { createPost, readPosts } from '@/apis';
 import { PostCard, PostForm, SearchField } from '@/components';
-import { prisma } from '@/lib';
 import styles from './App.module.css';
 
 /**
@@ -21,11 +20,7 @@ interface Props {
 const Page = async ({
   searchParams: { query }
 }: Props): Promise<JSX.Element> => {
-  const posts: Post[] = await prisma.post.findMany({
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
+  const posts: Post[] = await readPosts();
 
   const filteredPosts: Post[] =
     query !== undefined

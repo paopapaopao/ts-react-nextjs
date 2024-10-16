@@ -46,6 +46,22 @@ const readPost = async (id: number): Promise<PrismaPost | null> => {
   return response;
 }
 
+const readPosts = async (): Promise<PrismaPost[]> => {
+  let response: PrismaPost[] = [];
+
+  try {
+    response = await prisma.post.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return response;
+}
+
 const updatePost = async (payload: Prisma.PostUncheckedUpdateInput): Promise<PrismaPost | null> => {
   const { id, body, title } = payload;
   let response: PrismaPost | null = null;
@@ -87,4 +103,4 @@ const deletePost = async (id: number): Promise<PrismaPost | null> => {
   return response;
 }
 
-export { createPost, readPost, updatePost, deletePost };
+export { createPost, readPost, readPosts, updatePost, deletePost };
