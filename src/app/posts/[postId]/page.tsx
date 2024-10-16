@@ -3,9 +3,22 @@ import React from 'react';
 // import { type Post } from '@prisma/client';
 import { updatePost } from '@/apis';
 import { PostForm } from '@/components';
-// import { prisma } from '@/lib';
+import { prisma } from '@/lib';
 // import { type Comment } from '@/types';
 import styles from './PostDetails.module.css';
+
+// Add this function to generate static parameters for your dynamic route
+export async function generateStaticParams() {
+  const postIds = await prisma.post.findMany({
+    select: {
+      id: true
+    }
+  });
+
+  return postIds.map((postId) => ({
+    postId: postId.toString() // Convert to string as the route expects string params
+  }));
+}
 
 interface Props {
   params: {
