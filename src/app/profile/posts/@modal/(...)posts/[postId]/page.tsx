@@ -21,7 +21,7 @@ const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
 
   return (
     <Dialog className="user-post-modal">
-      <PostCard post={userPost} comments={userPostComments} />
+      <PostCard post={userPost} />
     </Dialog>
   );
 };
