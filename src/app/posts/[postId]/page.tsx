@@ -8,7 +8,7 @@ import { prisma } from '@/lib';
 import styles from './PostDetails.module.css';
 
 // Add this function to generate static parameters for your dynamic route
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ postId: string }[]> {
   const postIds = await prisma.post.findMany({
     select: {
       id: true
