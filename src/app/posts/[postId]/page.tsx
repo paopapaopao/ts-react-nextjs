@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   });
 
   return postIds.map((postId) => ({
-    postId: postId.toString() // Convert to string as the route expects string params
+    postId: postId.id.toString() // Convert to string as the route expects string params
   }));
 }
 
