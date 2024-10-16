@@ -30,6 +30,22 @@ const createPost = async (payload: Prisma.PostUncheckedCreateInput): Promise<Pri
   return response;
 }
 
+const readPost = async (id: number): Promise<PrismaPost | null> => {
+  let response: PrismaPost | null = null;
+
+  try {
+    response = await prisma.post.findUnique({
+      where: {
+        id
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  return response;
+}
+
 const updatePost = async (payload: Prisma.PostUncheckedUpdateInput): Promise<PrismaPost | null> => {
   const { id, body, title } = payload;
   let response: PrismaPost | null = null;
@@ -59,7 +75,7 @@ const deletePost = async (id: number): Promise<PrismaPost | null> => {
   try {
     response = await prisma.post.delete({
       where: {
-        id: id as number
+        id
       }
     });
 
@@ -71,4 +87,4 @@ const deletePost = async (id: number): Promise<PrismaPost | null> => {
   return response;
 }
 
-export { createPost, updatePost, deletePost };
+export { createPost, readPost, updatePost, deletePost };
