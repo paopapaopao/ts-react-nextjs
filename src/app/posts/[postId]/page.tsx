@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import { type Post } from '@prisma/client';
-import { updatePost } from '@/apis';
+import { readPost, updatePost } from '@/apis';
 import { PostCard, PostForm } from '@/components';
 import { prisma } from '@/lib';
 import { type Comment } from '@/types';
@@ -14,12 +14,7 @@ interface Props {
 }
 
 const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
-  const post: Post | null = await prisma.post.findUnique({
-    where: {
-      id: parseInt(postId)
-    }
-  });
-
+  const post: Post | null = await readPost(parseInt(postId));
   const postComments = await prisma.comment.findMany({
     where: {
       postId: parseInt(postId)
