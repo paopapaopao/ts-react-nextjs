@@ -20,7 +20,7 @@ const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
     }
   });
 
-  const postComments: Comment[] = await prisma.comment.findMany({
+  const postComments = await prisma.comment.findMany({
     where: {
       postId: parseInt(postId)
     }
@@ -51,7 +51,7 @@ const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
     <main className={classNames}>
       <PostForm action={updatePostAction} />
       <h1 className="text-xl font-bold">Post {postId}</h1>
-      <PostCard post={post} comments={postComments} />
+      {/* <PostCard post={post} comments={postComments} /> */}
     </main>
   );
 };

@@ -15,7 +15,7 @@ const Page = async ({ params: { postId } }: Props): Promise<JSX.Element> => {
       id: parseInt(postId)
     }
   });
-  const userPostComments: Comment[] = await prisma.comment.findMany({
+  const userPostComments = await prisma.comment.findMany({
     where: {
       postId: parseInt(postId)
     }

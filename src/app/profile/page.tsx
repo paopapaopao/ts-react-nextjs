@@ -25,7 +25,7 @@ const Page = async (): Promise<JSX.Element> => {
         height={256}
         className={styles['profile-picture']}
       />
-      <div className="grid grid-cols-4 gap-8">
+      {/* <div className="grid grid-cols-4 gap-8">
         <span className="font-bold">Name:</span>
         <span>{user?.name}</span>
         <span className="font-bold">Username:</span>
@@ -51,7 +51,7 @@ const Page = async (): Promise<JSX.Element> => {
           <span className="font-bold">BS:</span>
           <span>{user?.company.bs}</span>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };

@@ -9,7 +9,7 @@ import styles from './PostCard.module.css';
 
 interface Props {
   className?: string;
-  comments?: Comment[];
+  comments?: [];
   isLink?: boolean;
   post: Post | null;
 }
@@ -48,7 +48,7 @@ const PostCard = ({
         {capitalizeFirstLetter(post?.title)}
       </h4>
       <p className="text-base">{capitalizeFirstLetter(post?.body)}</p>
-      {comments.map((comment: Comment) => (
+      {comments.map((comment) => (
         <div className="flex gap-4" key={comment.id}>
           <Image
             src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
